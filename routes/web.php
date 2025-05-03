@@ -22,6 +22,7 @@ Route::middleware(['Customer'])->group(function(){
     Route::get('/produk/detail/{id}', [ProdukController::class,'ShowDetail'])->name('produk.detail');
     
     Route::get('/artikel', [ArtikelController::class, 'ShowView'])->name('Artikel');
+    Route::get('/artikel/{slug}', [ArtikelController::class, 'detailArtikel'])->name('ShowArtikel');
     
     Route::get('/pelatihan', [PelatihanController::class, 'ShowView'])->name('Pelatihan');
     
