@@ -12,10 +12,13 @@
 
 <body>
     <div class="flex h-screen">
+        @php
+            $user = Auth::user();
+        @endphp
         <x-sidebar></x-sidebar>
 
         <div class="flex-1 bg-dasar overflow-hidden">
-            <x-headers></x-headers>
+            <x-headers :user="$user"></x-headers>
             {{ $slot }}
         </div>
     </div>

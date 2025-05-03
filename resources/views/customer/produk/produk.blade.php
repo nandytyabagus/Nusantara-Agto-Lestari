@@ -35,23 +35,4 @@
             </div>
         </div>
     </section>
-    <script>
-        function showCustomAlert() {
-            const alertEl = document.querySelector('.danger-alert');
-            alertEl.classList.remove('hidden');
-
-            setTimeout(() => {
-                alertEl.classList.add('hidden');
-            }, 2000);
-        }
-
-        document.querySelectorAll('.card-produk').forEach(card => {
-            card.addEventListener('click', function(e) {
-                e.preventDefault();
-                showCustomAlert();
-            });
-        });
-    </script>
-
-
 </x-layouts.customer>

@@ -1,6 +1,4 @@
-@php
-    $user = Auth::user();
-@endphp
+@props(['user'])
 
 <footer class="bg-footer rounded-t-xl">
     <div class="px-[64px]">
@@ -19,17 +17,15 @@
                     <div class="w-[300px] space-y-2">
                         <div>
                             <h3 class="font-semibold">Alamat :</h3>
-                            <p class="text-sm">Jl. Tawang Mangu, Lingkungan Panji, Tegalgede, Kec. Sumbersari,
-                                Kabupaten Jember,
-                                Jawa Timur 68124</p>
+                            <p class="text-sm">{{ $user->alamat }}</p>
                         </div>
                         <div>
                             <h3 class="font-semibold">HP / Whatsapp :</h3>
-                            <p class="text-sx"> </p>
+                            <p class="text-sx">{{ trim(chunk_split($user->nomor, 4, '-'), '-') }}</p>
                         </div>
                         <div>
                             <h3 class="font-semibold">Email :</h3>
-                            <p class="text-sm">Example@gmail.com</p>
+                            <p class="text-sm">{{ $user->email }}</p>
                         </div>
                     </div>
                 </div>

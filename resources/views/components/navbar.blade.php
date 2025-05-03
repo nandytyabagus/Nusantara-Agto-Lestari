@@ -1,6 +1,4 @@
-@php
-    $user = Auth::user();
-@endphp
+@props(['user'])
 
 <header class="select-none w-full flex justify-between items-center py-[16px] px-[98px] shadow-header bg-white">
     <div class="flex items-center space-x-[8px]">

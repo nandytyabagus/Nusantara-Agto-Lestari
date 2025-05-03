@@ -1,6 +1,4 @@
-@php
-    $user = Auth::user();
-@endphp
+@props(['user'])
 
 <header class="bg-white text-logo py-[17px] px-[24px] flex justify-between items-center">
     <div class="flex items-center space-x-4">

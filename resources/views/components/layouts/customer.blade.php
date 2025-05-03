@@ -11,11 +11,15 @@
 </head>
 
 <body>
-    <x-navbar></x-navbar>
+    @php
+        $user = Auth::user();
+        $attribute = \App\Models\User::find(1);
+    @endphp
+    <x-navbar :user="$user"></x-navbar>
     <main>
         {{ $slot }}
     </main>
-    <x-footer></x-footer>
+    <x-footer :user="$attribute"></x-footer>
     @include('sweetalert::alert')
     @stack('scripts')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
