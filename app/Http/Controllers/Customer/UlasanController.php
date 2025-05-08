@@ -7,8 +7,9 @@ use Illuminate\Http\Request;
 
 class UlasanController extends Controller
 {
-    public function ShowView()
+    public function tambahUlasan($id)
     {
-        return view('customer.ulasan.ulasan');
+        
+        return back();
     }
 }

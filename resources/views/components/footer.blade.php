@@ -35,7 +35,6 @@
                 <a href="/produk">Produk</a>
                 <a href="/pelatihan">Pelatihan</a>
                 <a href="/artikel">Artikel</a>
-                <a href="/ulasan">Ulasan</a>
             </div>
             <div class="flex flex-col justify-center space-y-4 pr-[13px]">
                 <h3 class="font-semibold">Pesan Sekarang</h3>

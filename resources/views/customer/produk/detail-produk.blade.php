@@ -3,7 +3,7 @@
         <div class="md:w-1/2 bg-[#E3F4E0] h-[70%] md:h-screen flex justify-center items-center">
             <a href="{{ route('Produk') }}"
                 class="flex items-center gap-2 absolute top-4 left-5 md:top-7 md:left-6 lg:top-8 lg:left-7 text-text">
-                <x-heroicon-o-arrow-long-left class="w-5 h-5" />Kembali ke produk
+                <x-heroicon-o-arrow-long-left class="w-5 h-5" />Kembali ke halaman produk
             </a>
             <img src="{{ asset('storage/' . $produk->gambar) }}" alt="gambar" class=" w-64 md:w-xs lg:w-sm">
         </div>

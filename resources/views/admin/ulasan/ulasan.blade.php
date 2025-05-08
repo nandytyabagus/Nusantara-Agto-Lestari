@@ -33,12 +33,17 @@
                             </td>
                             <td class="px-4 py-3">{{ $ulasan->user->name }}</td>
                             <td class="px-4 py-3 text-justify whitespace-normal break-words max-w-md">
-                                {{ $ulasan->isi }}</td>
+                                {{ Str::limit($ulasan->isi, 100) }}</td>
                             <td class="px-4 py-3">
                                 {{ $ulasan->created_at->format('d M Y, H:i') }}
                             </td>
                             <td class="px-4 py-3">
                                 <div class="flex justify-center items-center gap-3">
+                                    <button data-modal-target="modalDetail-{{ $ulasan->id }}"
+                                        data-modal-toggle="modalDetail-{{ $ulasan->id }}" class="text-gray-600">
+                                        <x-heroicon-s-eye class="w-5 h-5" />
+                                    </button>
+                                    <span class="text-gray-300">|</span>
                                     <form action="{{ route('hapusUlasan', $ulasan->id) }}" method="POST"
                                         class="form-hapus">
                                         @csrf
@@ -52,6 +57,28 @@
                                 </div>
                             </td>
                         </tr>
+                        <div id="modalDetail-{{ $ulasan->id }}" tabindex="-1" aria-hidden="true"
+                            class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                            <div class="relative w-full max-w-3xl max-h-full">
+                                <div class="bg-white rounded-4xl shadow relative px-8 py-8 space-y-10">
+                                    <button data-modal-hide="modalDetail-{{ $ulasan->id }}"
+                                        class="absolute top-3 right-3 text-gray-400 bg-transparent hover:text-black rounded-full inline-flex items-center">
+                                        <x-ri-close-circle-fill class="w-8 h-8 hover:text-red-600 text-red-500" />
+                                    </button>
+                                    <div class="mt-5">
+                                        <p class=" italic">"{{ $ulasan->isi }}"</p>
+                                    </div>
+                                    <div class="flex gap-3 items-center">
+                                        <img src="" alt="gambar" class=" w-24 h-24 rounded-full">
+                                        <div class="space-y-2">
+                                            <h2 class="text-lg text-[#508D4E]">{{ $ulasan->user->name }}</h2>
+                                            <p class="text-[#718096]">{{ $ulasan->created_at->diffForHumans() }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
                     @endforeach
                 </tbody>
             </table>

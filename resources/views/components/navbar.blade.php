@@ -11,7 +11,6 @@
             <x-nav-link href="/produk" :active="request()->is('produk')">Produk</x-nav-link>
             <x-nav-link href="/artikel" :active="request()->is('artikel')">Artikel</x-nav-link>
             <x-nav-link href="/pelatihan" :active="request()->is('pelatihan')">Pelatihan</x-nav-link>
-            <x-nav-link href="/ulasan" :active="request()->is('ulasan')">Ulasan</x-nav-link>
         </div>
     </nav>
     <div class="flex">
