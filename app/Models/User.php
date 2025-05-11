@@ -57,4 +57,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Ulasan::class);
     }
+
+    public function detailPelatihans()
+    {
+        return $this->hasMany(DetailPelatihan::class);
+    }
 }

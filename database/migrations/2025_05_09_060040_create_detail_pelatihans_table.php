@@ -11,15 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pelatihans', function (Blueprint $table) {
+        Schema::create('detail_pelatihans', function (Blueprint $table) {
             $table->id();
-            $table->string('judul_pelatihan');
-            $table->text('deskripsi');
-            $table->dateTime('waktu_pelaksanaan');
-            $table->string('lokasi');
-            $table->integer('kuota');
-            $table->string('kontak');
-            $table->string('gambar')->nullable();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('pelatihan_id')->constrained()->onDelete('cascade');
+            $table->enum('status', ['pending', 'lunas'])->default('pending');
             $table->timestamps();
         });
     }
@@ -29,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pelatihans');
+        Schema::dropIfExists('detail_pelatihans');
     }
 };

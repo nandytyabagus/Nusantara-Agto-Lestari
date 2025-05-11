@@ -26,6 +26,8 @@ Route::middleware(['Customer'])->group(function(){
     
     Route::get('/pelatihan', [PelatihanController::class, 'ShowView'])->name('Pelatihan');
     Route::get('/pelatihan/{id}', [PelatihanController::class, 'detailPelatihan'])->name('detailPelatihanCustomer');
+    Route::get('/pelatihan/daftar', [PelatihanController::class, 'daftarPelatihan'])->name('daftarPelatihanCustomer');
+
 
     Route::post('/ulasan/{id}', [UlasanController::class, 'tambahUlasan'])->name('tambahUlasan');
 

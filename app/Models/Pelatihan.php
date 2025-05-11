@@ -15,4 +15,10 @@ class Pelatihan extends Model
         'kontak',
         'gambar',
     ];
+
+    public function detailPelatihans()
+    {
+        return $this->hasMany(DetailPelatihan::class);
+    }
+
 }
