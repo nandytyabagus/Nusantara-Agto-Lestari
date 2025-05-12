@@ -35,7 +35,6 @@ class PelatihanController extends Controller
         $pelatihan = Pelatihan::findOrFail($id);
 
         $user = Auth::user();
-        dd($user);
         return back();
     }
 }
