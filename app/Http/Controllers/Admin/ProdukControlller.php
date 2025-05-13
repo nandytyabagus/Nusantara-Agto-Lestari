@@ -141,6 +141,6 @@ class ProdukControlller extends Controller
         $produk->delete();
         
         toast('Produk telah berhasil dihapus', 'success')->autoClose(5000)->position('top-end')->hideCloseButton();
-        return redirect()->back();
+        return back();
     }
 }

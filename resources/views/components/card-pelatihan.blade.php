@@ -12,7 +12,7 @@
                 </div>
                 <div class="rounded-md py-2 px-2 bg-[#E6EFFE]">
                     <p class="text-sm">
-                        {{ \Carbon\Carbon::parse($pelatihan->waktu_pelaksanaan)->format('F d, Y') }}
+                        {{ \Carbon\Carbon::parse($pelatihan->waktu_pelaksanaan)->format('d F Y') }}
                     </p>
                 </div>
                 <div class="rounded-md py-2 px-4 bg-[#E6EFFE]">

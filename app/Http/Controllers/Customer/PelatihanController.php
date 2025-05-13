@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Customer;
 use App\Models\Pelatihan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\DetailPelatihan;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -25,16 +26,33 @@ class PelatihanController extends Controller
             return back();
         }
         
+        $user = Auth::user();
+        
+        $exists = DetailPelatihan::where('user_id', $user->id)->where('pelatihan_id', $id)->exists();
+        
         $pelatihans = Pelatihan::findOrFail($id);
 
-        return view('customer.pelatihan.detail-pelatihan', compact('pelatihans'));
+        return view('customer.pelatihan.detail-pelatihan', compact('pelatihans','exists'));
     }
 
     public function daftarPelatihan($id)
     {
-        $pelatihan = Pelatihan::findOrFail($id);
-
         $user = Auth::user();
+        $exists = DetailPelatihan::where('user_id', $user->id)->where('pelatihan_id', $id)->exists();
+
+        if ($exists) {
+            Alert::info('Informasi', 'Anda sudah terdaftar pada pelatihan ini!')->position('top')->autoClose(5000)->hideCloseButton();
+            return back();
+        }
+        
+        DetailPelatihan::create([
+            'user_id' => $user->id,
+            'pelatihan_id' => $id
+        ]);
+        
+        toast('Produk telah berhasil dihapus', 'success')->autoClose(5000)->position('top-end')->hideCloseButton();
         return back();
     }
+
+    
 }

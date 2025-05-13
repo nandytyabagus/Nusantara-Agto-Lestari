@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('pelatihan_id')->constrained()->onDelete('cascade');
-            $table->enum('status', ['pending', 'lunas'])->default('pending');
+            $table->enum('status', ['pending', 'lunas','rejected'])->default('pending');
             $table->timestamps();
         });
     }

@@ -14,7 +14,7 @@
                     </form>
                 </div>
             </div>
-            <div class="w-1/2 flex justify-end">
+            <div class="w-1/2 flex justify-end gap-3">
                 <a href="{{ route('viewTambahPelatihan') }}"
                     class="px-4 py-3 text-white rounded-2xl text-sm font-medium flex items-center bg-[#1474A7]"><x-solar-users-group-two-rounded-outline
                         class="w-5 h-5 mr-2" />Tambah Pelatihan</button>
@@ -56,7 +56,11 @@
                             <td class="px-4 py-3">
                                 <div class="flex items-center gap-3">
                                     <a href="{{ route('detailPelatihan', $pelatihan->id) }}"
-                                        class="text-gray-600"><x-heroicon-s-eye class="w-5 h-5" /></a>
+                                        class="text-[#76BF4C]"><x-heroicon-s-eye class="w-5 h-5" /></a>
+                                    <span class="text-gray-300">|</span>
+                                    <a href="{{ route('viewPendaftaran', $pelatihan->id) }}"
+                                        class="text-gray-700"><x-heroicon-o-document-duplicate class="w-5 h-5" />
+                                    </a>
                                     <span class="text-gray-300">|</span>
                                     <a href="{{ route('editPelatihan', $pelatihan->id) }}"
                                         class="text-blue-600 hover:text-blue-800">

@@ -1,39 +1,62 @@
 <x-layouts.Applayout>
-    detail pelatihan
-    <button data-modal-target="modalDetail" data-modal-toggle="modalDetail"
-        class="text-white px-6 py-6 cursor-pointer rounded-full bg-[#1474A7] absolute bottom-5 right-5"><x-sui-document-stack
-            class="w-8 h-8" /></button>
+    <div>
+        <div class=" absolute z-50 top-8 left-8">
+            <a href="{{ route('PelatihanAdmin') }}"
+                class="text-gray-500 gap-2 flex items-center"><x-heroicon-o-arrow-long-left class="w-5 h-5" />Kembali</a>
+        </div>
+        <!-- Gambar Utama Full Width -->
+        <div class="relative">
+            <img src="" alt="Gambar Pelatihan" class="w-full h-[400px] object-cover rounded-lg">
+        </div>
 
-    <div id="modalDetail" tabindex="-1" aria-hidden="true"
-        class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-        <div class="relative w-full max-w-3/4 max-h-full">
-            <div class="bg-white rounded-4xl shadow relative px-8 py-8 space-y-10">
-                <button data-modal-hide="modalDetail"
-                    class="absolute top-3 right-3 text-gray-400 bg-transparent hover:text-black rounded-full inline-flex items-center">
-                    <x-ri-close-circle-fill class="w-8 h-8 hover:text-red-600 text-red-500" />
-                </button>
-                <div class="pt-8 py-5 px-6 w-full">
-                    <table class="w-full">
-                        <thead class="border-b-1">
-                            <tr>
-                                <th class=" py-3 px-4 w-16">No</th>
-                                <th class=" py-3 px-4">Nama</th>
-                                <th class=" py-3 px-4">Nomor Telepon</th>
-                                <th class=" py-3 px-4">Email</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class=" py-3 px-4"></td>
-                                <td class=" py-3 px-4"></td>
-                                <td class=" py-3 px-4"></td>
-                                <td class=" py-3 px-4"></td>
-                                <td class=" py-3 px-4"></td>
-                            </tr>
-                        </tbody>
-                    </table>
+        <div class="relative z-50 -top-22 bg  px-16 ">
+            <div class="rounded-2xl p-9 space-y-8">
+                <div>
+                    <h1 class=" font-bold text-4xl">{{ $pelatihans->judul_pelatihan }}</h1>
+                </div>
+                <div class="grid grid-cols-3 gap-9">
+                    <div class="col-span-2 space-y-2">
+                        <h1 class=" text-lg">Deskripsi</h1>
+                        <p>{{ $pelatihans->deskripsi }}</p>
+                    </div>
+                    <div class=" rounded-[20px] bg-[#508D4E]">
+                        <div class=" p-5 border-b-1 border-white">
+                            <h3 class="text-xl font-bold text-white">Informasi Pelatihan</h3>
+                        </div>
+
+                        <div class="space-y-4 text-white p-5">
+                            <div>
+                                <span class="block">Batas Pendaftaran:</span>
+                                <span class="block font-semibold text-lg">28 April 2025</span>
+                            </div>
+
+                            <div>
+                                <span class="block">Alamat:</span>
+                                <span class="block text-lg font-semibold">{{ $pelatihans->lokasi }}</span>
+                            </div>
+
+                            <div>
+                                <span class="block">Sisa Kuota:</span>
+                                <span class="block text-lg font-semibold">35 Peserta</span>
+                            </div>
+
+                            <div>
+                                <span class="block">Tanggal Pelaksanaan:</span>
+                                <span
+                                    class="block text-lg font-semibold">{{ \Carbon\Carbon::parse($pelatihans->waktu_pelaksanaan)->format('d-m-y H : i') }}</span>
+                            </div>
+                            <form action="" method="POST" class="mt-5">
+                                @csrf
+                                <button type="submit"
+                                    class="w-full bg-white text-[#508D4E] font-semibold text-xl py-3 rounded-xl cursor-pointer">
+                                    Daftar Sekarang
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
 </x-layouts.Applayout>

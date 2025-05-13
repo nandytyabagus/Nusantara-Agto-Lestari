@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Pelatihan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\DetailPelatihan;
 use Illuminate\Support\Facades\Storage;
 
 class PelatihanControlller extends Controller
@@ -48,6 +49,13 @@ class PelatihanControlller extends Controller
     public function editPelatihan($id)
     {
         
+    }
+
+    public function ShowViewPendaftaran($id)
+    {   
+        $detailPelatihan = DetailPelatihan::with(['user', 'pelatihan'])->where('pelatihan_id', $id)->get();
+        
+        return view('admin.pelatihan.detail-pendaftaran',compact('detailPelatihan'));
     }
 
     public function hapusPelatihan($id)
