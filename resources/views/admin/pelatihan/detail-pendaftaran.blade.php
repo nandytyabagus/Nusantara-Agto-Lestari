@@ -59,7 +59,7 @@
                 </table>
             </div>
             <div class=" flex p-6 border-t-1 border-dasar">
-                <a href="{{ route('Pelatihan') }}"
+                <a href="{{ route('PelatihanAdmin') }}"
                     class="flex items-center gap-2 text-white font-medium bg-[#508D4E] px-4 py-3 rounded-lg">
                     <x-heroicon-s-arrow-small-left class="w-6 h-6" />Kembali
                 </a>
