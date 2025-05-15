@@ -38,21 +38,18 @@ class PelatihanController extends Controller
     public function daftarPelatihan($id)
     {
         $user = Auth::user();
-        $exists = DetailPelatihan::where('user_id', $user->id)->where('pelatihan_id', $id)->exists();
-
-        if ($exists) {
-            Alert::info('Informasi', 'Anda sudah terdaftar pada pelatihan ini!')->position('top')->autoClose(5000)->hideCloseButton();
-            return back();
-        }
-        
         DetailPelatihan::create([
             'user_id' => $user->id,
             'pelatihan_id' => $id
         ]);
         
-        toast('Produk telah berhasil dihapus', 'success')->autoClose(5000)->position('top-end')->hideCloseButton();
         return back();
     }
 
-    
+    public function ShowViewRiwayatPelatihan($id)
+    {
+        $pelatihans = DetailPelatihan::where('user_id', $id)->with('pelatihan')->get();
+
+        return view('customer.pelatihan.riwayat-pelatihan', compact('pelatihans'));
+    }
 }

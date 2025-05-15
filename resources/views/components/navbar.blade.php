@@ -43,8 +43,13 @@
                     aria-labelledby="dropdownInformdropdownAvatarNameButtonationButton">
                     <li>
                         <a href="{{ route('Profile', $user->id) }}"
-                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Manage
-                            account</a>
+                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Kelola
+                            akun</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('riwayatPelatihan', $user->id) }}"
+                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Riwayat
+                            pelatihan</a>
                     </li>
                 </ul>
                 <div class="py-2">

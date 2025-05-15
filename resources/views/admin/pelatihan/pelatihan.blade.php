@@ -33,7 +33,6 @@
                         <th class="px-4 py-3">Waktu</th>
                         <th class="px-4 py-3">Lokasi</th>
                         <th class="px-4 py-3">Kuota</th>
-                        <th class="px-4 py-3">Kontak</th>
                         <th class="px-4 py-3 text-center">Aksi</th>
                     </tr>
                 </thead>
@@ -48,11 +47,10 @@
                                 {{ Str::limit($pelatihan->deskripsi, 100) }}
                             </td>
                             <td class="px-4 py-3 w-[120px]">
-                                {{ date('d-m-Y', strtotime($pelatihan->waktu_pelaksanaan)) }}
+                                {{ \Carbon\Carbon::parse($pelatihan->waktu_pelaksanaan)->translatedFormat('d F Y') }}
                             </td>
                             <td class="px-4 py-3">{{ $pelatihan->lokasi }}</td>
                             <td class="text-center px-3 py-3">{{ $pelatihan->kuota }}</td>
-                            <td class="px-4 py-3">{{ $pelatihan->kontak }}</td>
                             <td class="px-4 py-3">
                                 <div class="flex items-center gap-3">
                                     <a href="{{ route('detailPelatihan', $pelatihan->id) }}"

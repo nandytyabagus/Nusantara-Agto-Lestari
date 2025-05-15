@@ -22,13 +22,16 @@ class PelatihanControlller extends Controller
         return view('admin.pelatihan.pelatihan', compact('pelatihans'));
     }
 
-    public function detailPelatihan($id)
-    {
-        $pelatihans = Pelatihan::findOrFail($id);
+public function detailPelatihan($id)
+{
+    $pelatihans = Pelatihan::findOrFail($id);
 
-        return view('admin.pelatihan.detail-pelatihan',compact('pelatihans'));
-    }
+    $jumlahPeserta = DetailPelatihan::where('pelatihan_id', $id)->count();
 
+    $sisaKuota = $pelatihans->kuota - $jumlahPeserta;
+
+    return view('admin.pelatihan.detail-pelatihan', compact('pelatihans', 'sisaKuota'));
+}
     public function ShowViewTambahPelatihan()
     {
         return view('admin.pelatihan.tambah-pelatihan');
@@ -51,7 +54,21 @@ class PelatihanControlller extends Controller
         
     }
 
-    public function ShowViewPendaftaran($id)
+    public function editStatus(Request $request,$id)
+    {
+        $request->validate([
+            'status' => 'required|in:pending,lunas,rejected',
+        ]);
+
+        $detail = DetailPelatihan::findOrFail($id);
+        $detail->status = $request->status;
+        $detail->save();
+        toast('Status berhasil diperbarui!', 'success')->autoClose(3000)->position('top-end');
+        
+        return back();
+    }
+
+    public function ShowViewPendaftaran($id)    
     {   
         $detailPelatihan = DetailPelatihan::with(['user', 'pelatihan'])->where('pelatihan_id', $id)->get();
         

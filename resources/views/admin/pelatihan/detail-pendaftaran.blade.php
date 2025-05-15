@@ -19,8 +19,7 @@
                             <th class="px-4 py-3">Email</th>
                             <th class="px-4 py-3">Nomor Telefon</th>
                             <th class="px-4 py-3">Waktu Pendaftaran</th>
-                            <th class="px-4 py-3">Status</th>
-                            <th class="px-4 py-3 text-center">Aksi</th>
+                            <th class="px-4 py-3 text-center">Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -31,9 +30,8 @@
                                 <td class="px-4 py-3">{{ $detail->user->email }}</td>
                                 <td class="px-4 py-3">{{ $detail->user->nomor }}</td>
                                 <td class="px-4 py-3">{{ $detail->created_at->format('d M Y H:i') }}</td>
-                                <td class="px-4 py-3">{{ ucfirst($detail->status) }}</td>
                                 <td class="px-4 py-3 text-center">
-                                    <form action="" method="POST">
+                                    <form action="{{ route('editStatus', $detail->id) }}" method="POST">
                                         @csrf
                                         @method('PUT')
                                         <select name="status" onchange="this.form.submit()"

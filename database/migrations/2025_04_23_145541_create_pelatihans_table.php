@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('judul_pelatihan');
             $table->text('deskripsi');
             $table->dateTime('waktu_pelaksanaan');
+            $table->dateTime('batas_pendaftaran');
             $table->string('lokasi');
             $table->integer('kuota');
-            $table->string('kontak');
             $table->string('gambar')->nullable();
             $table->timestamps();
         });

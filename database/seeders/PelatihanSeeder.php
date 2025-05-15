@@ -17,13 +17,17 @@ class PelatihanSeeder extends Seeder
         $faker = Faker::create();
 
         for ($i = 0; $i < 10; $i++) {
+
+            $waktuPelaksanaan = $faker->dateTimeBetween('+3 days', '+3 months');
+            $batasPendaftaran = (clone $waktuPelaksanaan)->modify('-3 days');
+
             Pelatihan::create([
                 'judul_pelatihan' => $faker->sentence(3),
                 'deskripsi' => $faker->paragraph(3),
-                'waktu_pelaksanaan' => $faker->dateTimeBetween('+3 days', '+3 months')->format('Y-m-d H:i:s'),
+                'waktu_pelaksanaan' => $waktuPelaksanaan->format('Y-m-d H:i:s'),
+                'batas_pendaftaran' => $batasPendaftaran->format('Y-m-d H:i:s'),
                 'lokasi' => $faker->city,
                 'kuota' => $faker->numberBetween(10, 100),
-                'kontak' => $faker->phoneNumber,
                 'gambar' => 'pelatihan_default.jpg',
             ]);
         }

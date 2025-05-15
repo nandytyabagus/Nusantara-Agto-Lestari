@@ -27,7 +27,8 @@
                         <div class="space-y-4 text-white p-5">
                             <div>
                                 <span class="block">Batas Pendaftaran:</span>
-                                <span class="block font-semibold text-lg">28 April 2025</span>
+                                <span
+                                    class="block font-semibold text-lg">{{ \Carbon\Carbon::parse($pelatihans->batas_pendaftaran)->translatedFormat('d F Y') }}</span>
                             </div>
 
                             <div>
@@ -37,13 +38,13 @@
 
                             <div>
                                 <span class="block">Sisa Kuota:</span>
-                                <span class="block text-lg font-semibold">35 Peserta</span>
+                                <span class="block text-lg font-semibold">{{ $sisaKuota }} Peserta</span>
                             </div>
 
                             <div>
                                 <span class="block">Tanggal Pelaksanaan:</span>
                                 <span
-                                    class="block text-lg font-semibold">{{ \Carbon\Carbon::parse($pelatihans->waktu_pelaksanaan)->format('d-m-y H : i') }}</span>
+                                    class="block text-lg font-semibold">{{ \Carbon\Carbon::parse($pelatihans->waktu_pelaksanaan)->translatedFormat('d F Y') }}</span>
                             </div>
                             <form action="" method="POST" class="mt-5">
                                 @csrf

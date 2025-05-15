@@ -10,6 +10,7 @@ class Pelatihan extends Model
         'judul_pelatihan',
         'deskripsi',
         'waktu_pelaksanaan',
+        'batas_pendaftaran',
         'lokasi',
         'kuota',
         'kontak',
@@ -18,7 +19,7 @@ class Pelatihan extends Model
 
     public function detailPelatihans()
     {
-        return $this->hasMany(DetailPelatihan::class);
+        return $this->hasMany(DetailPelatihan::class,'pelatihan_id');
     }
 
 }
