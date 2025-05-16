@@ -26,9 +26,9 @@
 
                         <div class="space-y-4 text-white p-5">
                             <div>
-                                <span class="block">Tanggal Pelaksanaan:</span>
+                                <span class="block">Batas Pendaftaran:</span>
                                 <span
-                                    class="block text-lg font-semibold">{{ \Carbon\Carbon::parse($pelatihans->waktu_pelaksanaan)->translatedFormat('d F Y') }}</span>
+                                    class="block text-lg font-semibold">{{ \Carbon\Carbon::parse($pelatihans->batas_pendaftaran)->translatedFormat('d F Y') }}</span>
                             </div>
 
                             <div>
