@@ -69,7 +69,8 @@
                                         <p class=" italic">"{{ $ulasan->isi }}"</p>
                                     </div>
                                     <div class="flex gap-3 items-center">
-                                        <img src="" alt="gambar" class=" w-24 h-24 rounded-full">
+                                        <img src="{{ $ulasan->user->avatar ? asset('storage/' . $ulasan->user->avatar) : asset('images/Avatar.webp') }}"
+                                            alt="gambar" class=" w-24 h-24 rounded-full" loading="lazy">
                                         <div class="space-y-2">
                                             <h2 class="text-lg text-[#508D4E]">{{ $ulasan->user->name }}</h2>
                                             <p class="text-[#718096]">{{ $ulasan->created_at->diffForHumans() }}</p>

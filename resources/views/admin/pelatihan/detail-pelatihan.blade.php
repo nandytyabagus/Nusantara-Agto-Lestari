@@ -6,10 +6,10 @@
         </div>
         <!-- Gambar Utama Full Width -->
         <div class="relative">
-            <img src="" alt="Gambar Pelatihan" class="w-full h-[400px] object-cover rounded-lg">
+            <img src="" alt="Gambar Pelatihan" class="w-full h-[400px] object-cover rounded-lg" loading="lazy">
         </div>
 
-        <div class="relative z-50 -top-22 bg  px-16 ">
+        <div class="relative z-50 -top-22 bg-white px-16 ">
             <div class="rounded-2xl p-9 space-y-8">
                 <div>
                     <h1 class=" font-bold text-4xl">{{ $pelatihans->judul_pelatihan }}</h1>
@@ -37,22 +37,22 @@
                             </div>
 
                             <div>
-                                <span class="block">Sisa Kuota:</span>
-                                <span class="block text-lg font-semibold">{{ $sisaKuota }} Peserta</span>
+                                <span class="block">Waktu Pelaksanaan:</span>
+                                <span
+                                    class="block text-lg font-semibold">{{ \Carbon\Carbon::parse($pelatihans->waktu_pelaksanaan)->translatedFormat('d F Y | H:i') }}</span>
                             </div>
 
                             <div>
-                                <span class="block">Tanggal Pelaksanaan:</span>
-                                <span
-                                    class="block text-lg font-semibold">{{ \Carbon\Carbon::parse($pelatihans->waktu_pelaksanaan)->translatedFormat('d F Y') }}</span>
+                                <span class="block">Sisa Kuota:</span>
+                                <span class="block text-lg font-semibold">{{ $sisaKuota }}</span>
                             </div>
-                            <form action="" method="POST" class="mt-5">
-                                @csrf
+                            <div>
                                 <button type="submit"
-                                    class="w-full bg-white text-[#508D4E] font-semibold text-xl py-3 rounded-xl cursor-pointer">
+                                    class="w-full bg-white text-[#508D4E] font-semibold text-xl py-3 rounded-xl"
+                                    disabled>
                                     Daftar Sekarang
                                 </button>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>

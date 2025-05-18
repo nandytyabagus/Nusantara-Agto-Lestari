@@ -11,19 +11,23 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class ProdukController extends Controller
 {
+
     public function ShowProduk(Request $request)
     {
         $kategoris = Kategori::all();
-        
+
         $kategoriId = $request->query('kategori');
 
         if (!$kategoriId && $kategoris->count()) {
             $kategoriId = $kategoris->first()->id;
         }
 
-        $kategori = Kategori::findOrFail($kategoriId);
+        // Eager load produk beserta kategori untuk mencegah N+1
+        $produks = Produk::with('kategori')
+            ->where('kategori_id', $kategoriId)
+            ->get();
 
-        $produks = Produk::with('kategori')->where('kategori_id', $kategori->id)->get();
+        $kategori = $kategoris->where('id', $kategoriId)->first();
 
         return view('customer.produk.produk', compact('produks', 'kategoris', 'kategoriId', 'kategori'));
     }

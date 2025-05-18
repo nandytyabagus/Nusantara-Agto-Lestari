@@ -40,7 +40,8 @@
                                 <input type="checkbox" />
                             </td>
                             <td class="px-4 py-3">
-                                <img src="{{ asset('storage/' . $artikel->gambar) }}" alt="gambar" class=" w-20">
+                                <img src="{{ asset('storage/' . $artikel->gambar) }}" alt="gambar" class=" w-20"
+                                    loading="lazy">
                             </td>
                             <td class="px-4 py-3">{{ $artikel->judul }}</td>
                             <td class="px-4 py-3 text-justify whitespace-normal break-words max-w-md">

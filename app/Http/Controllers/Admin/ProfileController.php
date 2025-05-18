@@ -5,9 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\View\Components\Layouts\admin;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -47,6 +46,41 @@ class ProfileController extends Controller
 
         $user->save();
 
-        return redirect()->route('ShowProfile', ['id' => Auth::user()->id]);
+        toast('Perbaikan Berhasil Disimpan', 'success')->autoClose(5000)->position('top-end')->hideCloseButton();
+        return redirect()->route('ShowProfile', ['id' => $id]);
+    }
+
+    public function updateAvatar(Request $request, $id)
+    {
+        $request->validate([
+            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $user = User::findOrFail($id);
+
+        if ($user->avatar && Storage::disk('public')->exists($user->avatar)) {
+            Storage::disk('public')->delete($user->avatar);
+        }
+
+        if ($request->hasFile('avatar')) {
+            $imagePath = $request->file('avatar')->store('avatars', 'public');
+            $user->avatar = $imagePath;
+            $user->save();
+        }
+        toast('Foto Profile Berhasil Diperbarui', 'success')->autoClose(5000)->position('top-end')->hideCloseButton();
+        return back();
+    }
+
+    public function deleteAvatar($id)
+    {
+        $user = User::findOrFail($id);
+
+        if ($user->avatar && Storage::disk('public')->exists($user->avatar)) {
+            Storage::disk('public')->delete($user->avatar);
+            $user->avatar = null;
+            $user->save();
+        }
+        toast('Foto Profile Berhasil Dihapus', 'success')->autoClose(5000)->position('top-end')->hideCloseButton();
+        return back();
     }
 }

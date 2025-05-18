@@ -2,21 +2,28 @@
     <section class="bg-dasar py-20 px-16 h-[100vh]">
         <div class="space-y-6">
             {{-- Header Profil --}}
-            <div>
+            <div class="w-full">
                 <div class="w-full h-24 bg-gray-200 rounded-t-xl overflow-hidden">
-                    <img src="/path/to/banner.jpg" alt="Banner" class="w-full h-full object-cover">
+                    <img src="{{ asset('images/profileWall.jpg') }}" alt="Banner" class="w-full h-full object-cover">
                 </div>
-                <div class=" px-8 py-4 bg-white flex rounded-b-xl justify-between items-center">
-                    <div>
-                        <h2 class="font-semibold text-xl text-gray-800">{{ $user->name }}</h2>
-                        <p class="text-sm font-light text-text">{{ $user->role }}</p>
+                <div class="relative px-8 py-4 bg-white flex rounded-b-xl items-center justify-between">
+                    <div class=" relative flex items-center gap-4">
+                        <div class="absolute -top-15">
+                            <img src="{{ $user->avatar ? asset('storage/' . $user->avatar) : asset('images/Avatar.webp') }}"
+                                alt="Avatar" class="w-24 h-24 rounded-full object-cover">
+                        </div>
+                        <div class="ml-30">
+                            <h2 class="font-semibold text-xl text-gray-800">{{ $user->name }}</h2>
+                            <p class="text-sm font-light text-text">{{ $user->role }}</p>
+                        </div>
                     </div>
-                    <img src="/path/to/avatar.jpg" alt="Avatar" class="w-16 h-16 rounded-full object-cover">
-                    <a href="" class="bg-logo text-white px-5 py-3 rounded-lg">
+                    <a href="{{ route('EditProfileCustomer', $user->id) }}"
+                        class="bg-logo text-white px-5 py-3 rounded-lg ml-auto">
                         Ubah Profil
                     </a>
                 </div>
             </div>
+
 
             {{-- Form --}}
             <div class="bg-white rounded-xl p-8 space-y-6">
@@ -82,6 +89,13 @@
                                     Email</label>
                             </div>
                         </div>
+                    </div>
+                    <div>
+                        <a href="{{ route('Beranda') }}"
+                            class="inline-flex items-center bg-logo text-white px-8 py-3 rounded-lg cursor-pointer pr-9">
+                            <x-tabler-caret-left-f class="w-6 h-6" />
+                            Kembali ke Beranda
+                        </a>
                     </div>
                 </div>
             </div>

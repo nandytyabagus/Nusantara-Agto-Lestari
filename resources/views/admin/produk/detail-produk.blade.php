@@ -5,7 +5,8 @@
                 class="flex items-center gap-2 absolute top-4 left-5 md:top-7 md:left-6 lg:top-8 lg:left-7 text-text">
                 <x-heroicon-o-arrow-long-left class="w-5 h-5" />Kembali ke halaman produk
             </a>
-            <img src="{{ asset('storage/' . $produk->gambar) }}" alt="gambar" class=" w-64 md:w-xs lg:w-sm">
+            <img src="{{ asset('storage/' . $produk->gambar) }}" alt="gambar" loading="lazy"
+                class=" w-64 md:w-xs lg:w-sm">
         </div>
         <div class="md:w-1/2 flex justify-center items-center p-10 md:px-20 lg:px-40">
             <div class="space-y-3">

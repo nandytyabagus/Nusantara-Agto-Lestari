@@ -1,6 +1,6 @@
 @props(['user'])
 
-<header class="select-none w-full flex justify-between items-center py-[16px] px-[98px] shadow-header bg-white">
+<header class="select-none w-full flex justify-between items-center py-[16px] px-[98px] shadow-sm bg-white">
     <div class="flex items-center space-x-[8px]">
         <img src="{{ asset('images/logo_nusantara.webp') }}" alt="logo" loading="lazy" class="w-[40px] h-[40px]">
         <h1 class="text-[16px] text-text font-bold">{{ config('app.name') }}</h1>
@@ -19,11 +19,12 @@
                 class="text-logo border-2 border-logo rounded-full py-[6px] px-[20px] hover:bg-logo hover:text-white">Login</button>
         @else
             <button id="dropdownAvatarNameButton" data-dropdown-toggle="dropdownAvatarName"
-                class="flex items-center text-sm pe-1 font-medium text-gray-900 rounded-full hover:text-blue-600 dark:hover:text-blue-500 md:me-0 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-white"
+                class="flex  items-center text-sm pe-1 font-medium text-gray-900 rounded-full hover:text-[#508D4E] md:me-0 focus:ring-4 focus:ring-gray-100 dark:text-white"
                 type="button">
                 <span class="sr-only">Open user menu</span>
-                <img class="w-8 h-8 me-2 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="user photo"
-                    loading="lazy">
+                <img class="w-8 h-8 me-2 rounded-full"
+                    src="{{ $user->avatar ? asset('storage/' . $user->avatar) : asset('images/Avatar.webp') }}"
+                    alt="user photo" loading="lazy">
                 {{ $user->name }}
                 <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                     viewBox="0 0 10 6">
@@ -33,10 +34,9 @@
             </button>
 
             <!-- Dropdown menu -->
-            <div id="dropdownAvatarName"
-                class="z-50 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600">
+            <div id="dropdownAvatarName" class="z-50 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44">
                 <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-                    <div class="font-medium ">{{ $user->name }}</div>
+                    <div class="truncate font-medium ">{{ $user->name }}</div>
                     <div class="truncate">{{ $user->email }}</div>
                 </div>
                 <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"

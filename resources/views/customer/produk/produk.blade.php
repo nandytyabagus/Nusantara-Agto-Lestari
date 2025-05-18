@@ -24,11 +24,12 @@
 
             </nav>
             {{-- card produk --}}
-            <div class="flex flex-wrap justify-center gap-6 py-12 px-[50px]">
+            <div
+                class="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 justify-center gap-6 py-12 px-[50px]">
                 @forelse ($produks as $produk)
                     <x-card-produk :produk="$produk" />
                 @empty
-                    <div class="h-dvh justify-center content-center">
+                    <div class="h-dvh col-span-5 justify-center content-center">
                         <p class="text-logo text-center text-3xl font-bold">Produk Kosong.</p>
                     </div>
                 @endforelse

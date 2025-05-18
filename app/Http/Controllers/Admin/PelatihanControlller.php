@@ -22,16 +22,18 @@ class PelatihanControlller extends Controller
         return view('admin.pelatihan.pelatihan', compact('pelatihans'));
     }
 
-public function detailPelatihan($id)
-{
-    $pelatihans = Pelatihan::findOrFail($id);
+    public function detailPelatihan($id)
+    {
+        $pelatihans = Pelatihan::withCount(['detailPelatihans as jumlahPeserta' => function ($query) {
+                $query->where('status', 'lunas');
+            }
+        ])->findOrFail($id);
 
-    $jumlahPeserta = DetailPelatihan::where('pelatihan_id', $id)->count();
+        $sisaKuota = $pelatihans->kuota - $pelatihans->jumlahPeserta;
 
-    $sisaKuota = $pelatihans->kuota - $jumlahPeserta;
+        return view('admin.pelatihan.detail-pelatihan', compact('pelatihans', 'sisaKuota'));
+    }
 
-    return view('admin.pelatihan.detail-pelatihan', compact('pelatihans', 'sisaKuota'));
-}
     public function ShowViewTambahPelatihan()
     {
         return view('admin.pelatihan.tambah-pelatihan');
@@ -70,9 +72,19 @@ public function detailPelatihan($id)
 
     public function ShowViewPendaftaran($id)    
     {   
-        $detailPelatihan = DetailPelatihan::with(['user', 'pelatihan'])->where('pelatihan_id', $id)->get();
-        
-        return view('admin.pelatihan.detail-pendaftaran',compact('detailPelatihan'));
+        $pelatihan = Pelatihan::withCount([
+            'detailPelatihans as jumlahPeserta' => function ($query) {
+                    $query->where('status', 'lunas');
+                }
+            ])->findOrFail($id);
+
+        $sisaKuota = $pelatihan->kuota - $pelatihan->jumlahPeserta;
+
+        $detailPelatihan = DetailPelatihan::with(['user', 'pelatihan'])
+            ->where('pelatihan_id', $id)
+            ->get();
+
+        return view('admin.pelatihan.detail-pendaftaran', compact('detailPelatihan', 'sisaKuota'));
     }
 
     public function hapusPelatihan($id)

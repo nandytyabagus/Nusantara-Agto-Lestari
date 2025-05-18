@@ -1,7 +1,7 @@
 <x-layouts.admin>
     <section class="p-6">
         <div class="bg-white items-center rounded-2xl ">
-            <div class="p-6 border-b-2 border-dasar">
+            <div class="p-6 border-b-2 border-dasar flex justify-between items-center">
                 <h1 class="text-xl font-semibold">
                     @if ($detailPelatihan->isNotEmpty())
                         {{ $detailPelatihan->first()->pelatihan->judul_pelatihan }}
@@ -9,6 +9,11 @@
                         Pelatihan Tidak Ditemukan atau Belum Ada Pendaftar
                     @endif
                 </h1>
+                <div class="">
+                    <h1 class="text-xl font-semibold">
+                        {{ $sisaKuota }} Kuota Tersisa
+                    </h1>
+                </div>
             </div>
             <div class="p-6 ">
                 <table class="text-left w-full table-auto border-b-1">

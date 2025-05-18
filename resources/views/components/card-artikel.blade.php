@@ -1,6 +1,7 @@
 @props(['artikel'])
 <div class="border border-t-2 border-[#B0B0B0] border-t-[#508D4E] p-5 space-y-3 bg-white">
-    <img src="{{ asset('storage/' . $artikel->gambar) }}" alt="gambar" class="w-full rounded-xl object-cover h-64">
+    <img src="{{ asset('storage/' . $artikel->gambar) }}" alt="gambar" loading="lazy"
+        class="w-full rounded-xl object-cover h-64">
     <div>
         <h2 class="font-semibold text-3xl">{{ $artikel->judul }}</h2>
         <p class="text-xs text-gray-500 mt-1">

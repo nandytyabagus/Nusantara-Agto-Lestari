@@ -1,9 +1,9 @@
 <x-layouts.Applayout>
     <div>
-        <a href="{{ route('Artikel') }}" class="flex items-center gap-2 absolute top-8 left-8">
+        <a href="{{ route('ArtikelAdmin') }}" class="flex items-center gap-2 absolute top-8 left-8">
             <x-heroicon-o-arrow-long-left class="w-5 h-5" />Kembali ke halaman artikel
         </a>
-        <img src="" alt="" class="w-full h-[420px]">
+        <img src="" alt="" class="w-full h-[420px]" loading="lazy">
     </div>
     <div class="flex p-14 gap-16">
         <div class="w-3/4">

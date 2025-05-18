@@ -26,13 +26,17 @@ Route::middleware(['Customer'])->group(function(){
     
     Route::get('/pelatihan', [PelatihanController::class, 'ShowView'])->name('Pelatihan');
     Route::get('/pelatihan/{id}', [PelatihanController::class, 'detailPelatihan'])->name('detailPelatihanCustomer');
-    Route::get('/pelatihan/daftar', [PelatihanController::class, 'daftarPelatihan'])->name('daftarPelatihanCustomer');
+    Route::post('/pelatihan/daftar{id}', [PelatihanController::class, 'daftarPelatihan'])->name('daftarPelatihanCustomer');
     Route::get('/pelatihan/riwayat/{id}', [PelatihanController::class, 'ShowViewRiwayatPelatihan'])->name('riwayatPelatihan');
-
+    Route::post('/pelatihan/cek-user', [PelatihanController::class, 'cekUser'])->name('pelatihan.cekUser');
 
     Route::post('/ulasan/{id}', [UlasanController::class, 'tambahUlasan'])->name('tambahUlasan');
 
     Route::get('/profile/{id}', [ProfileController::class, 'ShowProfile'])->name('Profile');
+    Route::get('/profile/edit/{id}', [ProfileController::class, 'ShowEditProfile'])->name('EditProfileCustomer');
+    Route::put('/profile/edit/{id}', [ProfileController::class, 'EditProfile'])->name('editProfileCustomer');
+    Route::put('/profile/{id}/avatar', [ProfileController::class, 'updateAvatar'])->name('updateAvatarCustomer');
+    Route::delete('/profile/{id}/avatar', [ProfileController::class, 'deleteAvatar'])->name('deleteAvatarCustomer');
 
 });
 
@@ -70,7 +74,9 @@ Route::middleware(['admin'])->group(function(){
 
     Route::get('/Profile/{id}',[AdminProfileController::class, 'ShowProfile'])->name('ShowProfile');
     Route::get('/Profile/edit/{id}',[AdminProfileController::class, 'ShowEditProfile'])->name('ShowEditProfile');
-    Route::post('/Profile/edit/{id}',[AdminProfileController::class, 'editProfile'])->name('editProfile');
+    Route::put('/Profile/edit/{id}',[AdminProfileController::class, 'editProfile'])->name('editProfile');
+    Route::put('/Profile/{id}/avatar', [AdminProfileController::class, 'updateAvatar'])->name('updateAvatar');
+    Route::delete('/Profile/{id}/avatar', [AdminProfileController::class, 'deleteAvatar'])->name('deleteAvatar');
 });
 
 Route::middleware(['guest'])->group(function(){
