@@ -89,10 +89,8 @@ class ArtikelControlller extends Controller
 
         $artikel = Artikel::findOrFail($id);
 
-        $imagePath = null;
-
         if ($request->hasFile('gambar')) {
-            if ($artikel->gambar) {
+            if ($artikel->gambar && Storage::disk('public')->exists($artikel->gambar)) {
                 Storage::delete('public/' . $artikel->gambar);
             }
 
@@ -102,7 +100,7 @@ class ArtikelControlller extends Controller
         $artikel->update([
             'judul' => $validate['judul'],
             'isi' => $validate['isi'],
-            'gambar' => $imagePath ?? $artikel->gambar,
+            'gambar' => $imagePath,
         ]);
 
         toast('Artikel berhasil diperbarui!', 'success')->autoClose(3000)->position('top-end');

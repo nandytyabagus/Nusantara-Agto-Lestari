@@ -107,10 +107,9 @@ class ProdukControlller extends Controller
         ]);
 
         $produk = Produk::findOrFail($id);
-        $imagePath = null;
 
         if ($request->hasFile('gambar')) {
-            if ($produk->gambar) {
+            if ($produk->gambar && Storage::disk('public')->exists($produk->gambar)) {
                 Storage::delete('public/' . $produk->gambar);
             }
 
@@ -122,7 +121,7 @@ class ProdukControlller extends Controller
             'kategori_id' => $validate['kategori'],
             'harga' => $validate['harga'],
             'deskripsi' => $validate['deskripsi'],
-            'gambar' => $imagePath ?? $produk->gambar,
+            'gambar' => $imagePath,
         ]);
 
         toast('Produk berhasil diperbarui!', 'success')->autoClose(3000)->position('top-end');

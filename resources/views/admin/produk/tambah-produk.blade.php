@@ -1,6 +1,6 @@
 <x-layouts.admin>
     <section class="p-[24px] overflow-auto">
-        <form id="form-produk" action="/Produk/Tambah-produk" method="POST" enctype="multipart/form-data">
+        <form id="form-produk" action="{{ route('createProduk') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="bg-white rounded-2xl w-full h-full p-[24px]">
                 <div class="flex items-center justify-center w-full mb-[24px]">

@@ -1,13 +1,15 @@
 <x-layouts.admin>
     <section class="p-[24px] overflow-auto">
-        <form id="form-produk" action="" method="POST" enctype="multipart/form-data">
+        <form id="form-pelatihan" action="{{ route('editPelatihan', $pelatihan->id) }}" method="POST"
+            enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             <div class="bg-white rounded-2xl w-full h-full p-[24px] space-y-5">
                 <div class="flex items-center justify-center w-full mb-[24px]">
                     <!-- Preview Gambar -->
                     <div id="image-preview" class="mb-3 hidden">
-                        <img id="preview" src="#" alt="Preview Gambar"
-                            class="w-40 h-40 object-cover rounded-lg mx-auto mb-2">
+                        <img id="preview" src="{{ $pelatihan->gambar ? asset('storage/' . $pelatihan->gambar) : '#' }}"
+                            alt="Preview Gambar" class="w-40 h-40 object-cover rounded-lg mx-auto mb-2">
                         <p class="text-sm text-center text-gray-500">Preview Gambar</p>
                     </div>
 
@@ -127,7 +129,7 @@
     </section>
     @push('scripts')
         <script>
-            const form = document.querySelector('#form-produk');
+            const form = document.querySelector('#form-pelatihan');
 
             form.addEventListener('submit', function(e) {
                 e.preventDefault();

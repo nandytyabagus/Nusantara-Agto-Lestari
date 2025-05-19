@@ -1,14 +1,15 @@
 <x-layouts.admin>
     <section class="p-[24px] overflow-auto">
-        <form id="form-artikel" action="/Artikel/edit-artikel/{{ $artikel->id }}" method="POST"
+        <form id="form-artikel" action="{{ route('editArtikel', $artikel->id) }}" method="POST"
             enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             <div class="bg-white rounded-2xl w-full h-full p-[24px]">
                 <div class="flex items-center justify-center w-full mb-[24px]">
                     <!-- Preview Gambar -->
                     <div id="image-preview" class="mb-3 hidden">
-                        <img id="preview" src="#" alt="Preview Gambar"
-                            class="w-40 h-40 object-cover rounded-lg mx-auto mb-2">
+                        <img id="preview" src="{{ $artikel->gambar ? asset('storage/' . $artikel->gambar) : '#' }}"
+                            alt="Preview Gambar" class="w-40 h-40 object-cover rounded-lg mx-auto mb-2">
                         <p class="text-sm text-center text-gray-500">Preview Gambar</p>
                     </div>
 

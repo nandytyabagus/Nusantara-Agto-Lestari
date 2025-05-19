@@ -13,7 +13,6 @@ class Pelatihan extends Model
         'batas_pendaftaran',
         'lokasi',
         'kuota',
-        'kontak',
         'gambar',
     ];
 
