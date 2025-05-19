@@ -139,10 +139,10 @@ class AuthController extends Controller
     public function verifyEmail(Request $request)
     {
         $request->validate([
-            'VerifyEmail' => 'required|string|email|max:255'
+            'email' => 'required|string|email|max:255'
         ],[
-            'VerifyEmail.required' => 'Email wajib diisi.',
-            'VerifyEmail.email' => 'Format email tidak valid.',
+            'email.required' => 'Email wajib diisi.',
+            'email.email' => 'Format email tidak valid.',
         ]);
 
         $user = User::where('email', $request->email)->first();
@@ -173,66 +173,79 @@ class AuthController extends Controller
 
     public function ShowOtp()
     {
+        if(!session('email')) {
+            return back();
+        }
+        
         return view('auth.otp');
     }
 
     public function cekOtp(Request $request)
     {
+
+        $otp = is_array($request->otp_digit) ? implode('', $request->otp_digit) : $request->otp;
+        $request->merge(['otp' => $otp]);
+
         $request->validate([
-            'otp' => 'required|integer|digits:6'
-        ],[
+            'otp' => 'required|numeric|digits:6'
+        ], [
             'otp.required' => 'Kode OTP wajib diisi.',
-            'otp.integer' => 'Kode OTP harus berupa angka.',
-            'otp.digits' => 'Kode OTP harus terdiri dari 6 digit.',
+            'otp.numeric' => 'Kode OTP harus berupa angka.',
+            'otp.digits' => 'Kode OTP harus terdiri dari 6 digit.'
         ]);
 
         $email = session('email');
+        if (!$email) {
+            return back()->with('error', 'Session tidak ditemukan, silakan coba lagi.');
+        }
+
         $passwordReset = PasswordReset::where('email', $email)->first();
 
-        if (!$passwordReset) {
-        return back()->with(['error' => 'Data tidak ditemukan.']);
-        }
-
         if (now()->greaterThan($passwordReset->expires_at)) {
-            return back()->withErrors(['error' => 'Kode OTP telah kedaluwarsa.']);
+            $passwordReset->delete();
+            return back()->with('error', 'Kode OTP telah kedaluwarsa.');
         }
 
-        if ($request->otp == $passwordReset->otp) {
-            return redirect()->route('NewPassword')->with('success', 'OTP valid, silakan reset password Anda.');
-        } else {
-            return back()->with(['error' => 'Kode OTP tidak valid.']);
+        if ($otp !== $passwordReset->otp) {
+            return back()->with('error', 'Kode OTP tidak valid.');
         }
+        
+        $passwordReset->delete();
+        return redirect()->route('NewPassword');
     }
 
     public function ShowCreatePass()
     {
+        if(!session('email')) {
+            return back();
+        }
+        
         return view('auth.reset_password');
     }
 
     public function veriNewPassword(Request $request)
     {
         $request->validate([
-            'password' => 'required|string|min:8|confirmed',
+            'password' => 'required|string|min:8',
             'password_confirmation' => 'required|string|same:password',
         ],[
             'password.required' => 'Kata sandi tidak boleh kosong.',
             'password.min' => 'Kata sandi minimal 8 karakter.',
-            'password.confirmed' => 'Konfirmasi kata sandi tidak cocok.',
             'password_confirmation.required' => 'Konfirmasi kata sandi wajib diisi.',
             'password_confirmation.same' => 'Konfirmasi kata sandi tidak cocok.',
         ]);
 
         $email = session('email');
         $user = User::where('email', $email)->first();
-
+        
         $user->update(['password' => Hash::make($request->password)]);
-        PasswordReset::where('email', $email)->delete();
+        
         session()->forget('email');
 
         return redirect()->route('suksesNewPassword');
     }
 
-    public function suksesNewPassword()
+    public function showSuccess()
     {
         return view('auth.succes_riset');
     }

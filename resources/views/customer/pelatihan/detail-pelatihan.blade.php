@@ -6,11 +6,12 @@
         </div>
         <!-- Gambar Utama Full Width -->
         <div class="relative">
-            <img src="" alt="Gambar Pelatihan" class="w-full h-[400px] object-cover rounded-lg" loading="lazy">
+            <img src="{{ asset('storage/' . $pelatihans->gambar) }}" alt="Gambar Pelatihan"
+                class="w-full h-[400px] object-cover" loading="lazy">
         </div>
 
-        <div class="relative z-50 -top-22 bg-white px-16 ">
-            <div class="rounded-2xl p-9 space-y-8">
+        <div class="relative z-50 -top-24 px-16 ">
+            <div class="rounded-2xl p-9 bg-white space-y-8">
                 <div>
                     <h1 class=" font-bold text-4xl">{{ $pelatihans->judul_pelatihan }}</h1>
                 </div>

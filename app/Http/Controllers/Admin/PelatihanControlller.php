@@ -42,20 +42,20 @@ class PelatihanControlller extends Controller
     public function tambahPelatihan(Request $request)
     {
         $request->validate([
-            'judul_pelatihan' => 'required|string|max:255',
+            'judul' => 'required|string|max:255',
             'deskripsi' => 'required',
-            'waktu_pelaksanaan' => 'required|date',
-            'batas_pendaftaran' => 'required|date',
+            'waktupelaksanaan' => 'required|date',
+            'bataspendaftaran' => 'required|date',
             'lokasi' => 'required|string',
             'kuota' => 'required|integer',
             'gambar' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
         ],[
-            'judul_pelatihan.required' => 'Judul pelatihan belum terisi',
+            'judul.required' => 'Judul pelatihan belum terisi',
             'deskripsi.required' => 'Deskripsi belum terisi',
-            'waktu_pelaksanaan.required' => 'Waktu pelaksanaan belum terisi',
-            'waktu_pelaksanaan.date' => 'Format waktu pelaksanaan tidak valid',
-            'batas_pendaftaran.required' => 'Batas pendaftaran belum terisi',
-            'batas_pendaftaran.date' => 'Format batas pendaftaran tidak valid',
+            'waktupelaksanaan.required' => 'Waktu pelaksanaan belum terisi',
+            'waktupelaksanaan.date' => 'Format waktu pelaksanaan tidak valid',
+            'bataspendaftaran.required' => 'Batas pendaftaran belum terisi',
+            'bataspendaftaran.date' => 'Format batas pendaftaran tidak valid',
             'lokasi.required' => 'Lokasi belum terisi',
             'kuota.required' => 'Kuota belum terisi',
             'gambar.required' => 'Gambar belum terisi',
@@ -67,10 +67,10 @@ class PelatihanControlller extends Controller
         $gambarPath = $request->file('gambar')->store('pelatihan', 'public');
 
         Pelatihan::create([
-            'judul_pelatihan' => $request->judul_pelatihan,
+            'judul_pelatihan' => $request->judul,
             'deskripsi' => $request->deskripsi,
-            'waktu_pelaksanaan' => $request->waktu_pelaksanaan,
-            'batas_pendaftaran' => $request->batas_pendaftaran,
+            'waktu_pelaksanaan' => $request->waktupelaksanaan,
+            'batas_pendaftaran' => $request->bataspendaftaran,
             'lokasi' => $request->lokasi,
             'kuota' => $request->kuota,
             'gambar' => $gambarPath,
@@ -90,20 +90,20 @@ class PelatihanControlller extends Controller
     public function editPelatihan(Request $request,$id)
     {
         $request->validate([
-            'judul_pelatihan' => 'required|string|max:255',
+            'judul' => 'required|string|max:255',
             'deskripsi' => 'required',
-            'waktu_pelaksanaan' => 'required|date',
-            'batas_pendaftaran' => 'required|date',
+            'waktupelaksanaan' => 'required|date',
+            'bataspendaftaran' => 'required|date',
             'lokasi' => 'required|string',
             'kuota' => 'required|integer',
             'gambar' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
         ],[
-            'judul_pelatihan.required' => 'Judul pelatihan belum terisi',
+            'judul.required' => 'Judul pelatihan belum terisi',
             'deskripsi.required' => 'Deskripsi belum terisi',
-            'waktu_pelaksanaan.required' => 'Waktu pelaksanaan belum terisi',
-            'waktu_pelaksanaan.date' => 'Format waktu pelaksanaan tidak valid',
-            'batas_pendaftaran.required' => 'Batas pendaftaran belum terisi',
-            'batas_pendaftaran.date' => 'Format batas pendaftaran tidak valid',
+            'waktupelaksanaan.required' => 'Waktu pelaksanaan belum terisi',
+            'waktupelaksanaan.date' => 'Format waktu pelaksanaan tidak valid',
+            'bataspendaftaran.required' => 'Batas pendaftaran belum terisi',
+            'bataspendaftaran.date' => 'Format batas pendaftaran tidak valid',
             'lokasi.required' => 'Lokasi belum terisi',
             'kuota.required' => 'Kuota belum terisi',
             'gambar.required' => 'Gambar belum terisi',
@@ -122,10 +122,10 @@ class PelatihanControlller extends Controller
         }
 
         $pelatihan->update([
-            'judul_pelatihan' => $request->judul_pelatihan,
+            'judul_pelatihan' => $request->judul,
             'deskripsi' => $request->deskripsi,
-            'waktu_pelaksanaan' => $request->waktu_pelaksanaan,
-            'batas_pendaftaran' => $request->batas_pendaftaran,
+            'waktu_pelaksanaan' => $request->waktupelaksanaan,
+            'batas_pendaftaran' => $request->bataspendaftaran,
             'lokasi' => $request->lokasi,
             'kuota' => $request->kuota,
             'gambar' => $gambarPath ?? $pelatihan->gambar,

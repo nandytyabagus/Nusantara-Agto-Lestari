@@ -20,17 +20,23 @@
             </div>
             <div class="w-1/2 flex justify-end">
                 @php
-                    $nextSortOrder = request('sort') == 'asc' ? 'desc' : 'asc';
+                    $currentSort = request('sort', 'desc');
+                    $nextSortOrder = $currentSort === 'asc' ? 'desc' : 'asc';
+                    $queryParams = array_merge(request()->except('sort'), ['sort' => $nextSortOrder]);
                 @endphp
 
-                <a href="{{ route('riwayatPelatihan', ['id' => $id, 'sort' => $nextSortOrder] + request()->except('sort')) }}"
-                    class="px-12 py-4 bg-[#508D4E] text-white rounded-2xl flex items-center font-semibold gap-2">
-                    @if (request('sort') == 'asc')
-                        <x-phosphor-arrow-down-bold class="h-5" />Urutkan Terbaru
-                    @else
-                        <x-phosphor-arrow-up-bold class="h-5" />Urutkan Terlama
-                    @endif
-                </a>
+                <div class="w-1/2 flex justify-end">
+                    <a href="{{ route('riwayatPelatihan', ['id' => $id] + $queryParams) }}"
+                        class="px-12 py-4 bg-[#508D4E] text-white rounded-2xl flex items-center font-semibold gap-2">
+                        @if ($currentSort === 'asc')
+                            <x-phosphor-arrow-down-bold class="h-5" />
+                            Urutkan Terbaru
+                        @else
+                            <x-phosphor-arrow-up-bold class="h-5" />
+                            Urutkan Terlama
+                        @endif
+                    </a>
+                </div>
             </div>
         </div>
         <div class="overflow-x-auto h-[72vh] scrollbar-hidden border-b-2 border-t-2 border-gray-300">

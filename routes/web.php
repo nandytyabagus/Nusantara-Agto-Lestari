@@ -87,17 +87,15 @@ Route::middleware(['guest'])->group(function(){
     Route::post('/register', [AuthController::class, 'register']);
     
     Route::get('/verify', [AuthController::class, 'ShowVerEmail'])->name('verify');
-    Route::post('/verify', [AuthController::class, 'verifyEmail']);
+    Route::post('/verify', [AuthController::class, 'verifyEmail'])->name('verifyEmail');
     
     Route::get('/verify/otp', [AuthController::class, 'ShowOtp'])->name('OTP');
-    Route::post('/verify/otp', [AuthController::class, 'cekOtp']);
+    Route::post('/verify/otp', [AuthController::class, 'cekOtp'])->name('veriOtp');
     
     Route::get('/verify/otp/create-password', [AuthController::class, 'ShowCreatePass'])->name('NewPassword');
-    Route::post('/verify/otp/create-password', [AuthController::class, 'veriNewPassword']);
+    Route::put('/verify/otp/create-password', [AuthController::class, 'veriNewPassword'])->name('veriNewPassword');
     
-    Route::get('/verify/otp/create-password/succes', function () {
-        return view('auth.succes_riset');
-    });
+    Route::get('/verify/otp/create-password/succes', [AuthController::class, 'showSuccess'])->name('suksesNewPassword');
 });
 
 Route::get('/register/succes', fn () => view('auth.succes_register'))->name('sukses');

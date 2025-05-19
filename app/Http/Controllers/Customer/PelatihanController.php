@@ -15,7 +15,7 @@ class PelatihanController extends Controller
 {
     public function ShowView()
     {
-        $pelatihans = Pelatihan::all();
+        $pelatihans = Pelatihan::orderBy('created_at', 'desc')->get();
 
         return view('customer.pelatihan.pelatihan', compact('pelatihans'));
     }
