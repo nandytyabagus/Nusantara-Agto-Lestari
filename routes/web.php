@@ -48,7 +48,7 @@ Route::middleware(['admin'])->group(function(){
     Route::get('/Produk/Tambah-produk', [AdminProdukController::class, 'ShowViewTambahProduk'])->name('Tambah');
     Route::post('/Produk/Tambah-produk', [AdminProdukController::class, 'tambahProduk'])->name('createProduk');
     Route::get('/Produk/edit/{id}', [AdminProdukController::class, 'ShowViewEditProduk'])->name('Edit');
-    Route::post('/Produk/edit/{id}', [AdminProdukController::class, 'editProduk'])->name('editProduk');
+    Route::put('/Produk/edit/{id}', [AdminProdukController::class, 'editProduk'])->name('editProduk');
     Route::delete('/Produk/delete/{id}', [AdminProdukController::class, 'hapusProduk'])->name('hapusProduk');
 
     Route::get('/Artikel',[AdminArtikelController::class, 'ShowViewAdmin'])->name('ArtikelAdmin');
@@ -56,7 +56,7 @@ Route::middleware(['admin'])->group(function(){
     Route::post('/Artikel/tambah-artikel',[AdminArtikelController::class, 'tambahArtikel'])->name('tambahArtikel');
     Route::get('/Artikel/detail/{id}',[AdminArtikelController::class, 'detailArtikel'])->name('detailArtikel');
     Route::get('/Artikel/edit-artikel/{id}',[AdminArtikelController::class, 'ShowViewEditArtikel'])->name('ShowViewEditArtikel');
-    Route::post('/Artikel/edit-artikel/{id}',[AdminArtikelController::class, 'editArtikel'])->name('editArtikel');
+    Route::put('/Artikel/edit-artikel/{id}',[AdminArtikelController::class, 'editArtikel'])->name('editArtikel');
     Route::delete('/Artikel/delete/{id}', [AdminArtikelController::class, 'hapusArtikel'])->name('hapusArtikel');
     
     Route::get('/Pelatihan',[AdminPelatihanController::class, 'ShowViewAdmin'])->name('PelatihanAdmin');
@@ -89,10 +89,10 @@ Route::middleware(['guest'])->group(function(){
     Route::get('/verify', [AuthController::class, 'ShowVerEmail'])->name('verify');
     Route::post('/verify', [AuthController::class, 'verifyEmail']);
     
-    Route::post('/verify/otp', [AuthController::class, 'ShowOtp'])->name('OTP');
+    Route::get('/verify/otp', [AuthController::class, 'ShowOtp'])->name('OTP');
     Route::post('/verify/otp', [AuthController::class, 'cekOtp']);
     
-    Route::post('/verify/otp/create-password', [AuthController::class, 'ShowCreatePass'])->name('NewPassword');
+    Route::get('/verify/otp/create-password', [AuthController::class, 'ShowCreatePass'])->name('NewPassword');
     Route::post('/verify/otp/create-password', [AuthController::class, 'veriNewPassword']);
     
     Route::get('/verify/otp/create-password/succes', function () {

@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\PasswordReset;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -142,7 +145,95 @@ class AuthController extends Controller
             'VerifyEmail.email' => 'Format email tidak valid.',
         ]);
 
-        // $user = 
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+            return redirect()->back()->with('error', 'Email tidak ditemukan dalam sistem.');
+        }
+
+        $otp = random_int(100000, 999999);
+
+        PasswordReset::updateOrCreate(
+            ['email' => $request->email],
+            [
+                'otp' => $otp,
+                'expires_at' => Carbon::now()->addMinutes(10)
+            ]
+        );
+
+        session(['email' => $request->email]);
+        
+        Mail::raw("Kode OTP Anda adalah: $otp (berlaku selama 10 menit)", function ($message) use ($request) {
+            $message->to($request->email)
+                    ->subject('Kode OTP Reset Password');
+        });
+
+        return redirect()->route('OTP')->with('success', 'Kode OTP berhasil dikirim, silakan cek email Anda.');
     }
 
+    public function ShowOtp()
+    {
+        return view('auth.otp');
+    }
+
+    public function cekOtp(Request $request)
+    {
+        $request->validate([
+            'otp' => 'required|integer|digits:6'
+        ],[
+            'otp.required' => 'Kode OTP wajib diisi.',
+            'otp.integer' => 'Kode OTP harus berupa angka.',
+            'otp.digits' => 'Kode OTP harus terdiri dari 6 digit.',
+        ]);
+
+        $email = session('email');
+        $passwordReset = PasswordReset::where('email', $email)->first();
+
+        if (!$passwordReset) {
+        return back()->with(['error' => 'Data tidak ditemukan.']);
+        }
+
+        if (now()->greaterThan($passwordReset->expires_at)) {
+            return back()->withErrors(['error' => 'Kode OTP telah kedaluwarsa.']);
+        }
+
+        if ($request->otp == $passwordReset->otp) {
+            return redirect()->route('NewPassword')->with('success', 'OTP valid, silakan reset password Anda.');
+        } else {
+            return back()->with(['error' => 'Kode OTP tidak valid.']);
+        }
+    }
+
+    public function ShowCreatePass()
+    {
+        return view('auth.reset_password');
+    }
+
+    public function veriNewPassword(Request $request)
+    {
+        $request->validate([
+            'password' => 'required|string|min:8|confirmed',
+            'password_confirmation' => 'required|string|same:password',
+        ],[
+            'password.required' => 'Kata sandi tidak boleh kosong.',
+            'password.min' => 'Kata sandi minimal 8 karakter.',
+            'password.confirmed' => 'Konfirmasi kata sandi tidak cocok.',
+            'password_confirmation.required' => 'Konfirmasi kata sandi wajib diisi.',
+            'password_confirmation.same' => 'Konfirmasi kata sandi tidak cocok.',
+        ]);
+
+        $email = session('email');
+        $user = User::where('email', $email)->first();
+
+        $user->update(['password' => Hash::make($request->password)]);
+        PasswordReset::where('email', $email)->delete();
+        session()->forget('email');
+
+        return redirect()->route('suksesNewPassword');
+    }
+
+    public function suksesNewPassword()
+    {
+        return view('auth.succes_riset');
+    }
 }
