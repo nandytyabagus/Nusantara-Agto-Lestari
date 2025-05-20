@@ -30,7 +30,8 @@ Route::middleware(['Customer'])->group(function(){
     Route::get('/pelatihan/riwayat/{id}', [PelatihanController::class, 'ShowViewRiwayatPelatihan'])->name('riwayatPelatihan');
     Route::post('/pelatihan/cek-user', [PelatihanController::class, 'cekUser'])->name('pelatihan.cekUser');
 
-    Route::post('/ulasan/{id}', [UlasanController::class, 'tambahUlasan'])->name('tambahUlasan');
+    Route::post('/produk/ulasan/{id}/create', [UlasanController::class, 'tambahUlasanProduk'])->name('tambahUlasanProduk');
+    Route::post('/produk/ulasan/{id}/create', [UlasanController::class, 'tambahUlasanPelatihan'])->name('tambahUlasanPelatihan');
 
     Route::get('/profile/{id}', [ProfileController::class, 'ShowProfile'])->name('Profile');
     Route::get('/profile/edit/{id}', [ProfileController::class, 'ShowEditProfile'])->name('EditProfileCustomer');

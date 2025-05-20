@@ -34,6 +34,7 @@
                     </div>
                 @endforelse
             </div>
+            @include('customer.ulasan.ulasan', ['ulasans' => $ulasans])
         </div>
     </section>
 </x-layouts.customer>

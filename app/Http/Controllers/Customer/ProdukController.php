@@ -6,6 +6,7 @@ use App\Models\Produk;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Ulasan;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -29,7 +30,9 @@ class ProdukController extends Controller
 
         $kategori = $kategoris->where('id', $kategoriId)->first();
 
-        return view('customer.produk.produk', compact('produks', 'kategoris', 'kategoriId', 'kategori'));
+        $ulasans = Ulasan::with('user')->where('tipe_ulasan_id', 1)->orderBy('created_at', 'desc')->get();
+
+        return view('customer.produk.produk', compact('produks', 'kategoris', 'kategoriId', 'kategori', 'ulasans'));
     }
 
     public function ShowDetail($id)

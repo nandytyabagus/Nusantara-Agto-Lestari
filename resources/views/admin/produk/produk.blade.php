@@ -52,7 +52,7 @@
                             <td class="px-4 py-3">
                                 <div class="flex items-center gap-3">
                                     <a href="{{ route('DetailProduk', $produk->id) }}"
-                                        class="text-gray-600"><x-heroicon-s-eye class="w-5 h-5" /></a>
+                                        class="text-[#76BF4C]"><x-heroicon-s-eye class="w-5 h-5" /></a>
                                     <span class="text-gray-300">|</span>
                                     <a href="{{ route('editProduk', $produk->id) }}"
                                         class="text-blue-600 hover:text-blue-800">

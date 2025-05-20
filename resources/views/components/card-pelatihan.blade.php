@@ -2,8 +2,8 @@
 
 <a href="{{ route('detailPelatihanCustomer', $pelatihan->id) }}"
     class="shadow-card-artikel rounded-lg p-4 space-y-2 w-full">
-    <div class="flex">
-        <img src="" alt="gambar" class=" w-24 h-24">
+    <div class="flex gap-4">
+        <img src="{{ asset('storage/' . $pelatihan->gambar) }}" alt="gambar" class=" w-24 h-24 rounded-lg object-cover">
         <div class="space-y-3 p-1">
             <h2 class="font-semibold">{{ $pelatihan->judul_pelatihan }}</h2>
             <div class="flex gap-3">

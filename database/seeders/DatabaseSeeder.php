@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             KategoriSeeder::class,
             ProdukSeeder::class,
             ArtikelSeeder::class,
+            TipeUlasanSeeder::class,
             UlasanSeeder::class,
             PelatihanSeeder::class,
             DetailPelatihanSeeder::class

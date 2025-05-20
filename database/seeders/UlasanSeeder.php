@@ -16,10 +16,11 @@ class UlasanSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 20; $i++) {
             Ulasan::create([
                 'isi' => $faker->paragraph(3),
                 'user_id' => 2,
+                'tipe_ulasan_id' => random_int(1, 2),
             ]);
         }
     }

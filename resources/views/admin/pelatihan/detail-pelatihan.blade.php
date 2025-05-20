@@ -2,7 +2,7 @@
     <div>
         <div class=" absolute z-50 top-8 left-8">
             <a href="{{ route('PelatihanAdmin') }}"
-                class="text-gray-500 gap-2 flex items-center"><x-heroicon-o-arrow-long-left class="w-5 h-5" />Kembali</a>
+                class="text-white gap-2 flex items-center"><x-heroicon-o-arrow-long-left class="w-5 h-5" />Kembali</a>
         </div>
         <!-- Gambar Utama Full Width -->
         <div class="relative">
