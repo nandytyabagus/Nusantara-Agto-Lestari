@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Customer;
 
+use Carbon\Carbon;
 use App\Models\Produk;
+use App\Models\Ulasan;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Ulasan;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -23,14 +24,31 @@ class ProdukController extends Controller
             $kategoriId = $kategoris->first()->id;
         }
 
-        // Eager load produk beserta kategori untuk mencegah N+1
         $produks = Produk::with('kategori')
             ->where('kategori_id', $kategoriId)
             ->get();
 
         $kategori = $kategoris->where('id', $kategoriId)->first();
 
-        $ulasans = Ulasan::with('user')->where('tipe_ulasan_id', 1)->orderBy('created_at', 'desc')->get();
+        $semuaulasans = Ulasan::with('user')->where('tipe_ulasan_id', 1)->orderBy('created_at', 'desc')->get();
+
+        $user = Auth::user();
+        $waktuBatas = Carbon::now()->subMinutes(5);
+
+        if ($user) {
+            $ulasanBaruUser = $semuaulasans->filter(function ($ulasan) use ($user, $waktuBatas) {
+                return $ulasan->user_id === $user->id && $ulasan->created_at >= $waktuBatas;
+            });
+
+            $ulasanLain = $semuaulasans->filter(function ($ulasan) use ($ulasanBaruUser) {
+                return !$ulasanBaruUser->contains($ulasan);
+            });
+
+            $ulasans = $ulasanBaruUser->concat($ulasanLain);
+        } else {
+            $ulasans = $semuaulasans;
+        }
+
 
         return view('customer.produk.produk', compact('produks', 'kategoris', 'kategoriId', 'kategori', 'ulasans'));
     }

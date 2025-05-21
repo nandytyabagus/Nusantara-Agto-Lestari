@@ -10,7 +10,7 @@
                     <div class=" relative flex items-center gap-4">
                         <div class="absolute -top-15">
                             <img src="{{ $user->avatar ? asset('storage/' . $user->avatar) : asset('images/Avatar.webp') }}"
-                                alt="Avatar" class="w-24 h-24 rounded-full object-cover">
+                                alt="Avatar" class="w-26 h-26 rounded-full object-cover">
                         </div>
                         <div class="ml-30">
                             <h2 class="font-semibold text-xl text-gray-800">{{ $user->name }}</h2>

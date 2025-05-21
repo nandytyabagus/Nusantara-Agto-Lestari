@@ -28,6 +28,7 @@
         "codeat3/blade-uiw-icons": "^1.6",
         "davidhsianturi/blade-bootstrap-icons": "^2.0",
         "hasnayeen/blade-eva-icons": "^2.1",
+        "khatabwedaa/blade-css-icons": "^1.5",
         "laravel/framework": "^12.9",
         "laravel/socialite": "^5.19",
         "laravel/tinker": "^2.10.1",

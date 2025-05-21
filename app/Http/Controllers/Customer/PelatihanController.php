@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Customer;
 
+use Carbon\Carbon;
+use App\Models\User;
+use App\Models\Ulasan;
 use App\Models\Pelatihan;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\DetailPelatihan;
-use App\Models\User;
-use App\View\Components\Layouts\admin;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\View\Components\Layouts\admin;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PelatihanController extends Controller
@@ -17,7 +19,26 @@ class PelatihanController extends Controller
     {
         $pelatihans = Pelatihan::orderBy('created_at', 'desc')->get();
 
-        return view('customer.pelatihan.pelatihan', compact('pelatihans'));
+        $semuaulasans = Ulasan::with('user')->where('tipe_ulasan_id', 2)->orderBy('created_at', 'desc')->get();
+
+        $user = Auth::user();
+        $waktuBatas = Carbon::now()->subMinutes(5);
+
+        if ($user) {
+            $ulasanBaruUser = $semuaulasans->filter(function ($ulasan) use ($user, $waktuBatas) {
+                return $ulasan->user_id === $user->id && $ulasan->created_at >= $waktuBatas;
+            });
+
+            $ulasanLain = $semuaulasans->filter(function ($ulasan) use ($ulasanBaruUser) {
+                return !$ulasanBaruUser->contains($ulasan);
+            });
+
+            $ulasans = $ulasanBaruUser->concat($ulasanLain);
+        } else {
+            $ulasans = $semuaulasans;
+        }
+
+        return view('customer.pelatihan.pelatihan', compact('pelatihans', 'ulasans'));
     }
 
     public function detailPelatihan($id)

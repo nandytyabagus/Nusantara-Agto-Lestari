@@ -10,14 +10,14 @@
                     <div class=" relative flex items-center gap-4">
                         <div class="absolute -top-15">
                             <img src="{{ $user->avatar ? asset('storage/' . $user->avatar) : asset('images/Avatar.webp') }}"
-                                alt="Avatar" loading="lazy" class="w-24 h-24 rounded-full object-cover">
+                                alt="Avatar" class="w-26 h-26 rounded-full object-cover">
                         </div>
                         <div class="ml-30">
                             <h2 class="font-semibold text-xl text-gray-800">{{ $user->name }}</h2>
                             <p class="text-sm font-light text-text">{{ $user->role }}</p>
                         </div>
                     </div>
-                    <a href="{{ route('editProfile', $user->id) }}"
+                    <a href="{{ route('EditProfileCustomer', $user->id) }}"
                         class="bg-logo text-white px-5 py-3 rounded-lg ml-auto">
                         Ubah Profil
                     </a>
@@ -91,7 +91,7 @@
                         </div>
                     </div>
                     <div>
-                        <a href="{{ route('BerandaAdmin') }}"
+                        <a href="{{ route('Beranda') }}"
                             class="inline-flex items-center bg-logo text-white px-8 py-3 rounded-lg cursor-pointer pr-9">
                             <x-tabler-caret-left-f class="w-6 h-6" />
                             Kembali ke Beranda

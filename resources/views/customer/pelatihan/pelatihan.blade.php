@@ -15,4 +15,5 @@
             </div>
         @endif
     </div>
+    @include('customer.ulasan.ulasan', ['ulasans' => $ulasans, 'tipe' => 'pelatihan'])
 </x-layouts.customer>

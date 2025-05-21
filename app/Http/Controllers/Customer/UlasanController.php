@@ -2,39 +2,50 @@
 
 namespace App\Http\Controllers\Customer;
 
-use App\Http\Controllers\Controller;
 use App\Models\Ulasan;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class UlasanController extends Controller
 {
-    public function tambahUlasanProduk(Request $request,$id)
+    public function tambahUlasan(Request $request,$id)
     {
         $request->validate([
             'comment' => 'required',
         ]);
 
+        $user = Auth::user();
+
         Ulasan::create([
-            'user_id' => $id,
-            'tipe_ulasans_id' => 1,
-            'comment' => $request->comment,
+            'user_id' => $user->id,
+            'tipe_ulasan_id' => $id,
+            'isi' => $request->comment,
         ]);
 
+        toast('Ulasan berhasil ditambahkan', 'success')->autoClose(5000)->position('top-end')->hideCloseButton();
         return redirect()->back();
     }
 
-        public function tambahUlasanPelatihan(Request $request,$id)
+    public function update(Request $request, Ulasan $ulasan)
     {
         $request->validate([
             'comment' => 'required',
         ]);
 
-        Ulasan::create([
-            'user_id' => $id,
-            'tipe_ulasans_id' => 2,
-            'comment' => $request->comment,
+        $ulasan->update([
+            'isi' => $request->comment,
         ]);
 
-        return redirect()->back();
+        toast('Ulasan berhasil diperbarui', 'success')->autoClose(5000)->position('top-end')->hideCloseButton();
+        return back();
+    }
+
+    public function destroy(Ulasan $ulasan)
+    {
+        $ulasan->delete();
+
+        toast('Ulasan berhasil dihapus', 'success')->autoClose(5000)->position('top-end')->hideCloseButton();
+        return back();
     }
 }

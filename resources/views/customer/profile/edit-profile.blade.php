@@ -11,7 +11,7 @@
                     <div class=" relative flex items-center gap-4">
                         <div class="absolute -top-15">
                             <img src="{{ $user->avatar ? asset('storage/' . $user->avatar) : asset('images/Avatar.webp') }}"
-                                alt="Avatar" class="w-24 h-24 rounded-full object-cover object-center bg-white">
+                                alt="Avatar" class="w-26 h-26 rounded-full object-cover object-center bg-white">
                             <button id="dropdownButton" data-dropdown-toggle="dropdown"
                                 class="p-2 bg-black text-white rounded-full absolute right-0 bottom-0"><x-fluentui-edit-24-o
                                     class="w-4 h-4" /></button>
@@ -24,8 +24,8 @@
                                             @csrf
                                             @method('PUT')
                                             <label
-                                                class="block px-4 py-2 text-center font-semibold hover:text-black w-full cursor-pointer">
-                                                Pilih Foto
+                                                class="flex gap-2 items-center justify-center px-4 py-2 font-semibold text-blue-500 hover:text-blue-600 w-full cursor-pointer">
+                                                <x-far-image class="h-5 w-5" />Pilih Foto
                                                 <input type="file" name="avatar" class="hidden"
                                                     onchange="this.form.submit()">
                                             </label>
@@ -36,7 +36,8 @@
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit"
-                                                class="block px-4 py-2 font-semibold hover:text-gray-900 w-full">Hapus</button>
+                                                class="flex items-center justify-center text-red-500 gap-2 px-4 py-2 font-semibold hover:text-red-600 w-full cursor-pointer"><x-heroicon-o-trash
+                                                    class="w-5 h-5" />Hapus</button>
                                         </form>
                                     </li>
                                 </ul>
