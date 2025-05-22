@@ -17,7 +17,9 @@
                 <div class="mb-6">
                     <h2 class="text-lg font-semibold text-logo">Kategori : {{ $produk->kategori->nama }}</h2>
                     <h2 class="text-lg font-semibold">Deskripsi :</h2>
-                    <p>{{ $produk->deskripsi }}</p>
+                    <div>
+                        {!! nl2br(e($produk->deskripsi)) !!}
+                    </div>
                 </div>
                 <div>
                     <a href="https://wa.me/6287845015648?text=Halo%20Admin,%20saya%20ingin%20melakukan%20pembayaran.%20Mohon%20lengkapi%20data%20di%20bawah:%0A-%20Nama:%20%0A-%20Nomor%20Rekening:%20%0A-%20Jumlah%20Transfer:%20"

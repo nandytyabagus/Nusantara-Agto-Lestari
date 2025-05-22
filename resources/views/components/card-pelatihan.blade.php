@@ -22,6 +22,6 @@
             </div>
         </div>
     </div>
-    <p class=" text-sm">{{ Str::limit($pelatihan->deskripsi, 200) }}</p>
+    <p class=" text-sm">{{ Str::limit(strip_tags($pelatihan->deskripsi), 200) }}</p>
     <p class="text-sm flex items-center gap-2"><x-entypo-location class="w-5 h-5" />{{ $pelatihan->lokasi }}</p>
 </a>

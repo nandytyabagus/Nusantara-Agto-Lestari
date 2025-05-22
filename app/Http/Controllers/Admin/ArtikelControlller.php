@@ -121,4 +121,6 @@ class ArtikelControlller extends Controller
         toast('Artikel telah berhasil dihapus', 'success')->autoClose(5000)->position('top-end')->hideCloseButton();
         return redirect()->back();
     }
+
+    
 }

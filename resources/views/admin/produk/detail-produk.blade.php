@@ -17,7 +17,9 @@
                 <div class="mb-6">
                     <h2 class="text-lg font-semibold text-logo">Kategori : {{ $produk->kategori->nama }}</h2>
                     <h2 class="text-lg font-semibold">Deskripsi :</h2>
-                    <p>{{ $produk->deskripsi }}</p>
+                    <div>
+                        {!! nl2br(e($produk->deskripsi)) !!}
+                    </div>
                 </div>
             </div>
         </div>

@@ -8,7 +8,9 @@
             {{ $artikel->user->name }} | <span>{{ $artikel->created_at->format('H:i - d M Y') }}</span>
         </p>
     </div>
-    <p class="text-sm text-gray-700">{{ Str::limit($artikel->isi, 300) }}</p>
+    <p class="text-sm text-gray-700">
+        {{ Str::limit(strip_tags($artikel->isi), 300) }}
+    </p>
     <a href="{{ route('ShowArtikel', $artikel->slug) }}"
         class="inline-flex items-center px-5 py-2.5 text-sm bg-[#508D4E] text-white rounded-3xl hover:bg-[#3f6f3d] transition">
         Baca Selengkapnya

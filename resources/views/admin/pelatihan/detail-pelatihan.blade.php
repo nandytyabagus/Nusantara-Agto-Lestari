@@ -18,7 +18,10 @@
                 <div class="grid grid-cols-3 gap-9">
                     <div class="col-span-2 space-y-2">
                         <h1 class=" text-lg">Deskripsi</h1>
-                        <p>{{ $pelatihans->deskripsi }}</p>
+                        <div
+                            class="prose max-w-full prose-h1:text-3xl prose-h1:font-bold prose-h2:text-2xl prose-p:leading-relaxed prose-img:rounded-lg">
+                            {!! $pelatihans->deskripsi !!}
+                        </div>
                     </div>
                     <div class=" rounded-[20px] bg-[#508D4E]">
                         <div class=" p-5 border-b-1 border-white">
