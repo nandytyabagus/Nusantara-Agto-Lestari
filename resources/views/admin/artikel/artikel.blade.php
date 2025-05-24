@@ -45,7 +45,7 @@
                             </td>
                             <td class="px-4 py-3">{{ $artikel->judul }}</td>
                             <td class="px-4 py-3 text-justify whitespace-normal break-words max-w-md">
-                                {!! Str::limit(strip_tags($artikel->isi), 100) !!}
+                                {!! Str::limit($artikel->isi, 100) !!}
                             </td>
                             <td class="px-4 py-3">
                                 <div class="flex items-center gap-3">

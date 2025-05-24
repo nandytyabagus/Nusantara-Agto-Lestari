@@ -6,40 +6,35 @@ Size.whitelist = ["small", false, "large", "huge"];
 Quill.register(Size, true);
 
 document.addEventListener("DOMContentLoaded", () => {
-    const editorElement = document.getElementById("isi");
-    if (!editorElement) return;
+    const quillEditor = document.getElementById("quill-editor");
+    const quillEditorArea = document.getElementById("quill-editor-area");
 
-    editorElement.style.display = "none";
+    if (quillEditor && quillEditorArea) {
+        quillEditor.style.height = "8.5rem";
 
-    const quillContainer = document.createElement("div");
-    quillContainer.setAttribute("id", "quill-editor");
-    quillContainer.style.height = "8.5rem";
-    editorElement.parentNode.insertBefore(
-        quillContainer,
-        editorElement.nextSibling
-    );
+        const editor = new Quill("#quill-editor", {
+            theme: "snow",
+            modules: {
+                toolbar: [
+                    [{ header: [1, 2, false] }],
+                    [{ size: ["small", false, "large", "huge"] }],
+                    ["bold", "italic", "underline", "strike"],
+                    [{ list: "ordered" }, { list: "bullet" }],
+                    [{ indent: "-1" }, { indent: "+1" }],
+                    [{ color: [] }, { background: [] }],
+                    [{ align: [] }],
+                    ["link", "image"],
+                    ["clean"],
+                ],
+            },
+        });
 
-    const quill = new Quill("#quill-editor", {
-        theme: "snow",
-        modules: {
-            toolbar: [
-                [{ header: [1, 2, false] }],
-                [{ size: ["small", false, "large", "huge"] }],
-                ["bold", "italic", "underline"],
-                [{ list: "ordered" }, { list: "bullet" }],
-                ["link", "image"],
-                ["clean"],
-            ],
-        },
-    });
+        editor.on("text-change", () => {
+            quillEditorArea.value = editor.root.innerHTML;
+        });
 
-    const oldContent = editorElement.value;
-    if (oldContent) {
-        quill.root.innerHTML = oldContent;
+        if (quillEditorArea.value.trim() !== "") {
+            editor.clipboard.dangerouslyPasteHTML(quillEditorArea.value);
+        }
     }
-
-    const form = document.querySelector("#form-artikel");
-    form.addEventListener("submit", () => {
-        editorElement.value = quill.root.innerHTML;
-    });
 });

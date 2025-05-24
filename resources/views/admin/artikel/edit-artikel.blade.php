@@ -54,8 +54,10 @@
                         <label for="isi"
                             class="text-gray-500 {{ $errors->has('isi', $artikel->isi) ? 'text-red-500' : 'text-gray-500 ' }}">Isi
                             Artikel</label>
-                        <textarea type="text" name="isi" id="isi"
-                            class="w-full rounded-lg border-2 resize-none bg-transparent text-left align-top px-3 py-3 h-34 appearance-none focus:ring-0 focus:border-logo peer focus:outline-none {{ $errors->has('isi') ? 'border-red-500 focus:border-red-500' : 'border-gray-300 focus:border-logo' }}">{{ old('isi', $artikel->isi) }}</textarea>
+                        <div id="quill-editor" class="h-48"></div>
+                        <textarea name="isi" id="quill-editor-area" cols="30" rows="10" class="hidden">{{ old('isi', $artikel->isi) }}</textarea>
+                        {{-- <textarea type="text" name="isi" id="isi"
+                            class="hidden w-full rounded-lg border-2 resize-none bg-transparent text-left align-top px-3 py-3 h-34 appearance-none focus:ring-0 focus:border-logo peer focus:outline-none {{ $errors->has('isi') ? 'border-red-500 focus:border-red-500' : 'border-gray-300 focus:border-logo' }}">{{ old('isi', $artikel->isi) }}</textarea> --}}
                     </div>
                     <div class=" flex justify-between">
                         <a href="{{ route('ArtikelAdmin') }}"
