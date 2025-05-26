@@ -4,18 +4,19 @@
             enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            <div class="bg-white rounded-2xl w-full h-full p-[24px] space-y-5">
+            <div class="bg-white rounded-2xl w-full h-[85vh] p-[24px] space-y-5 overflow-auto scrollbar-hidden">
                 <div class="flex items-center justify-center w-full mb-[24px]">
                     <!-- Preview Gambar -->
-                    <div id="image-preview" class="mb-3 hidden">
+                    <div id="image-preview"
+                        class="mb-3 {{ $pelatihan->gambar ? '' : 'hidden' }} cursor-pointer relative w-full h-[50vh]">
                         <img id="preview" src="{{ $pelatihan->gambar ? asset('storage/' . $pelatihan->gambar) : '#' }}"
-                            alt="Preview Gambar" class="w-40 h-40 object-cover rounded-lg mx-auto mb-2">
-                        <p class="text-sm text-center text-gray-500">Preview Gambar</p>
+                            alt="Preview Gambar" class="w-full h-full object-cover rounded-lg mx-auto mb-2">
+                        <p class="text-sm text-center text-black">Klik gambar untuk mengganti</p>
                     </div>
 
                     <!-- Upload Button -->
-                    <label for="dropzone-file"
-                        class="flex flex-col items-center justify-center w-full h-48 border-2  border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 {{ $errors->has('gambar') ? ' border-red-700 ' : ' border-gray-300' }} ">
+                    <label id="upload-label" for="dropzone-file"
+                        class="flex flex-col items-center justify-center w-full h-48 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 {{ $pelatihan->gambar ? 'hidden' : '' }}">
                         <div class="flex flex-col items-center justify-center pt-5 pb-6">
                             <div
                                 class="bg-[#ECECEE] w-[80px] h-[80px] flex items-center justify-center rounded-full mb-3">
@@ -29,7 +30,7 @@
                             <p class="mb-2 text-sm text-gray-500 font-semibold">Upload Foto</p>
                             <p class="text-xs text-gray-500 dark:text-gray-400">JPG, JPEG, PNG & WEBP (MAX 2 MB)</p>
                         </div>
-                        <input id="dropzone-file" name="gambar" type="file" accept="image/*" class="hidden" />
+                        <input id="dropzone-file" name="gambar" type="file" class="hidden" />
                     </label>
                 </div>
 
@@ -106,8 +107,10 @@
                         <div class=" col-span-2">
                             <label for="deskripsi"
                                 class="text-gray-300 {{ $errors->has('deskripsi') ? 'text-red-500' : 'text-gray-300' }}">Deskripsi</label>
-                            <textarea name="deskripsi" id="deskripsi" placeholder="Masukkan deskripsi pelatihan"
-                                class="w-full rounded-lg border-2 resize-none bg-transparent text-left align-top px-3 py-3 h-40 appearance-none focus:ring-0 focus:border-logo peer focus:outline-none {{ $errors->has('deskripsi') ? 'border-red-500 focus:border-red-500' : 'border-gray-300 focus:border-logo' }}">{{ old('deskripsi', $pelatihan->deskripsi) }}</textarea>
+                            <div id="quill-editor" class="h-48"></div>
+                            <textarea name="isi" id="quill-editor-area" cols="30" rows="10" class="hidden">{{ old('isi') }}</textarea>
+                            {{-- <textarea name="deskripsi" id="deskripsi" placeholder="Masukkan deskripsi pelatihan"
+                                class="w-full rounded-lg border-2 resize-none bg-transparent text-left align-top px-3 py-3 h-40 appearance-none focus:ring-0 focus:border-logo peer focus:outline-none {{ $errors->has('deskripsi') ? 'border-red-500 focus:border-red-500' : 'border-gray-300 focus:border-logo' }}">{{ old('deskripsi', $pelatihan->deskripsi) }}</textarea> --}}
                             @error('deskripsi')
                                 <span class="text-xs text-red-500 block">{{ $message }}</span>
                             @enderror
@@ -150,6 +153,12 @@
             const inputFile = document.getElementById("dropzone-file");
             const previewContainer = document.getElementById("image-preview");
             const previewImage = document.getElementById("preview");
+            const uploadLabel = document.getElementById("upload-label");
+
+            if (previewImage.src && !previewImage.src.endsWith('#')) {
+                previewContainer.classList.remove("hidden");
+                uploadLabel.classList.add("hidden");
+            }
 
             inputFile.addEventListener("change", function() {
                 const file = this.files[0];
@@ -163,6 +172,10 @@
 
                     reader.readAsDataURL(file);
                 }
+            });
+
+            previewContainer.addEventListener("click", function() {
+                inputFile.click();
             });
         </script>
     @endpush

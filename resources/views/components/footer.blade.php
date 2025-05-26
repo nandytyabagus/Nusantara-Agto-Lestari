@@ -12,7 +12,7 @@
                 <div class="flex space-x-[24px]">
                     <iframe class="rounded-lg shadow-ulasan"
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3949.484787828207!2d113.72178107477004!3d-8.153812891876655!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd695faa7177f47%3A0x5e51525f588ea78d!2sNusantara%20Agro%20Lestari%20Kandang%201!5e0!3m2!1sid!2sid!4v1745001739003!5m2!1sid!2sid"
-                        width="300" height="175" style="border:0;" allowfullscreen="" loading="lazy"
+                        width="300" height="190" style="border:0;" allowfullscreen="" loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade"></iframe>
                     <div class="w-[300px] space-y-2">
                         <div>

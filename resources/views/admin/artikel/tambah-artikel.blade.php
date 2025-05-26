@@ -2,17 +2,17 @@
     <section class="p-[24px] overflow-auto">
         <form id="form-artikel" action="{{ route('tambahArtikel') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <div class="bg-white rounded-2xl w-full h-full p-[24px]">
+            <div class="bg-white rounded-2xl w-full h-[83vh] p-[24px] overflow-auto scrollbar-hidden">
                 <div class="flex items-center justify-center w-full mb-[24px]">
                     <!-- Preview Gambar -->
-                    <div id="image-preview" class="mb-3 hidden">
+                    <div id="image-preview" class="mb-3 hidden cursor-pointer relative w-full h-[50vh]">
                         <img id="preview" src="#" alt="Preview Gambar"
-                            class="w-40 h-40 object-cover rounded-lg mx-auto mb-2">
-                        <p class="text-sm text-center text-gray-500">Preview Gambar</p>
+                            class="w-full h-full object-cover rounded-lg mx-auto mb-2">
+                        <p class="text-sm text-center text-black">Klik gambar untuk mengganti</p>
                     </div>
 
                     <!-- Upload Button -->
-                    <label for="dropzone-file"
+                    <label id="upload-label" for="dropzone-file"
                         class="flex flex-col items-center justify-center w-full h-48 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
                         <div class="flex flex-col items-center justify-center pt-5 pb-6">
                             <div
@@ -25,6 +25,7 @@
                                 </svg>
                             </div>
                             <p class="mb-2 text-sm text-gray-500 font-semibold">Upload Foto</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">JPG, JPEG, PNG & WEBP (MAX 2 MB)</p>
                         </div>
                         <input id="dropzone-file" name="gambar" type="file" class="hidden" />
                     </label>
@@ -93,6 +94,7 @@
             const inputFile = document.getElementById("dropzone-file");
             const previewContainer = document.getElementById("image-preview");
             const previewImage = document.getElementById("preview");
+            const uploadLabel = document.getElementById("upload-label");
 
             inputFile.addEventListener("change", function() {
                 const file = this.files[0];
@@ -102,10 +104,15 @@
                     reader.addEventListener("load", function() {
                         previewImage.setAttribute("src", this.result);
                         previewContainer.classList.remove("hidden");
+                        uploadLabel.classList.add("hidden");
                     });
 
                     reader.readAsDataURL(file);
                 }
+            });
+
+            previewContainer.addEventListener("click", function() {
+                inputFile.click();
             });
         </script>
     @endpush
