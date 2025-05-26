@@ -59,7 +59,8 @@ class PelatihanController extends Controller
         $jumlahPeserta = $pelatihans->detailPelatihans->count();
         $sisaKuota = $pelatihans->kuota - $jumlahPeserta;
 
-        $exists = $pelatihans->detailPelatihans->where('user_id', $user->id)->isNotEmpty();
+        $exists = detailPelatihan::where('user_id', $user->id)->where('pelatihan_id', $id)->exists();
+        // dd($exists);
 
         return view('customer.pelatihan.detail-pelatihan', compact('pelatihans', 'exists', 'sisaKuota', 'user', 'admin'));
     }
@@ -85,7 +86,7 @@ class PelatihanController extends Controller
         ]);
 
         toast('Anda telah terdaftar pelatihan ini!', 'success')->autoClose(3000)->position('top-end')->hideCloseButton();
-        return back();
+        return redirect()->back();
     }
 
     public function ShowViewRiwayatPelatihan(Request $request, $id)

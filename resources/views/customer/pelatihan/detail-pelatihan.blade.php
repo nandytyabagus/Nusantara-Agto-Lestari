@@ -158,7 +158,7 @@
                                                         method="POST" class="space-x-2">
                                                         @csrf
                                                         <button id="konfirmasiModal" type="submit"
-                                                            class="text-white bg-[#508D4E] rounded-lg px-5 py-3">
+                                                            class="text-white bg-[#508D4E] rounded-lg px-5 py-3 cursor-pointer">
                                                             Daftar Sekarang
                                                         </button>
                                                     </form>
