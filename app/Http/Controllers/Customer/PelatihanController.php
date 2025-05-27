@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 use App\Models\DetailPelatihan;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\View\Components\Layouts\admin;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PelatihanController extends Controller
@@ -60,7 +59,6 @@ class PelatihanController extends Controller
         $sisaKuota = $pelatihans->kuota - $jumlahPeserta;
 
         $exists = detailPelatihan::where('user_id', $user->id)->where('pelatihan_id', $id)->exists();
-        // dd($exists);
 
         return view('customer.pelatihan.detail-pelatihan', compact('pelatihans', 'exists', 'sisaKuota', 'user', 'admin'));
     }

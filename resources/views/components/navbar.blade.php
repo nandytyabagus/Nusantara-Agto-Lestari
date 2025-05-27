@@ -8,9 +8,9 @@
     <nav>
         <div class=" flex space-x-8">
             <x-nav-link href="/" :active="request()->is('/')">Beranda</x-nav-link>
-            <x-nav-link href="/produk" :active="request()->is('produk')">Produk</x-nav-link>
-            <x-nav-link href="/artikel" :active="request()->is('artikel')">Artikel</x-nav-link>
-            <x-nav-link href="/pelatihan" :active="request()->is('pelatihan')">Pelatihan</x-nav-link>
+            <x-nav-link href="/produk" :active="request()->is('produk*')">Produk</x-nav-link>
+            <x-nav-link href="/artikel" :active="request()->is('artikel*')">Artikel</x-nav-link>
+            <x-nav-link href="/pelatihan" :active="request()->is('pelatihan*')">Pelatihan</x-nav-link>
         </div>
     </nav>
     <div class="flex">
