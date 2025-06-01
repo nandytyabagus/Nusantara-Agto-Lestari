@@ -28,7 +28,6 @@ class PelatihanSeeder extends Seeder
                 'batas_pendaftaran' => $batasPendaftaran->format('Y-m-d H:i:s'),
                 'lokasi' => $faker->city,
                 'kuota' => $faker->numberBetween(10, 100),
-                'gambar' => 'pelatihan_default.jpg',
             ]);
         }
     }
