@@ -148,6 +148,61 @@
                                                         permasalahan teknis lainnya.</li>
                                                 </ul>
                                             </div>
+                                            <div>
+                                                <form id="form-pembayaran-{{ $pelatihan->id }}"
+                                                    action="{{ route('uploadBuktiPembayaran', $pelatihan->id) }}"
+                                                    method="POST" enctype="multipart/form-data">
+                                                    @csrf
+                                                    @method('PUT')
+
+                                                    <div id="image-preview-{{ $pelatihan->id }}"
+                                                        class="mb-3 {{ $pelatihan->bukti_pembayaran ? '' : 'hidden' }} cursor-pointer relative w-full h-[50vh]">
+                                                        <img id="preview-{{ $pelatihan->id }}"
+                                                            src="{{ $pelatihan->bukti_pembayaran ? asset('storage/' . $pelatihan->bukti_pembayaran) : '#' }}"
+                                                            alt="Preview Gambar"
+                                                            class="w-full h-full object-contain rounded-lg mx-auto mb-2">
+                                                        <p class="text-sm text-center text-black">Klik gambar untuk
+                                                            mengganti</p>
+                                                    </div>
+                                                    <label id="upload-label-{{ $pelatihan->id }}"
+                                                        for="dropzone-file-{{ $pelatihan->id }}"
+                                                        class="flex flex-col items-center justify-center w-full h-48 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 {{ $pelatihan->bukti_pembayaran ? 'hidden' : '' }}">
+                                                        <div
+                                                            class="flex flex-col items-center justify-center pt-5 pb-6">
+                                                            <div
+                                                                class="bg-[#ECECEE] w-[80px] h-[80px] flex items-center justify-center rounded-full mb-3">
+                                                                <svg class="w-8 h-8 text-gray-800"
+                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                    fill="currentColor" viewBox="0 0 24 24">
+                                                                    <path
+                                                                        d="M4 5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-3.172l-1.414-1.414A2 2 0 0 0 13.172 3h-2.344a2 2 0 0 0-1.414.586L8 5H4z" />
+                                                                    <circle cx="12" cy="12" r="3.2"
+                                                                        fill="#ECECEE" />
+                                                                </svg>
+                                                            </div>
+                                                            <p class="mb-2 text-sm text-gray-500 font-semibold">Upload
+                                                                Foto
+                                                            </p>
+                                                            <p class="text-xs text-gray-500 dark:text-gray-400">JPG,
+                                                                JPEG,
+                                                                PNG & WEBP (MAX 2 MB)</p>
+                                                        </div>
+                                                        <input id="dropzone-file-{{ $pelatihan->id }}" name="gambar"
+                                                            type="file" class="hidden" />
+                                                        @if ($pelatihan->bukti_pembayaran)
+                                                            <input id="dropzone-file-{{ $pelatihan->id }}"
+                                                                name="gambar" type="file" class="hidden"
+                                                                value="{{ $pelatihan->bukti_pembayaran }}">
+                                                        @endif
+                                                    </label>
+                                                    <div class="mt-10 flex justify-center">
+                                                        <button type="submit" title="Simpan"
+                                                            class="text-white bg-[#508D4E] px-4 py-2 rounded-lg cursor-pointer">
+                                                            <x-fas-save class="w-6" />
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -161,12 +216,46 @@
                                 </div>
                             </div>
                         </div>
+                        {{-- END MODAL --}}
                     @endforeach
                 </tbody>
             </table>
         </div>
         @push('scripts')
             <script>
+                document.querySelectorAll('form[id^="form-pembayaran"]').forEach(form => {
+                    const id = form.id.replace('form-pembayaran-', '');
+                    const inputFile = document.getElementById(`dropzone-file-${id}`);
+                    const previewContainer = document.getElementById(`image-preview-${id}`);
+                    const previewImage = document.getElementById(`preview-${id}`);
+                    const uploadLabel = document.getElementById(`upload-label-${id}`);
+
+                    if (previewImage && previewImage.src && !previewImage.src.endsWith('#')) {
+                        previewContainer.classList.remove("hidden");
+                        uploadLabel.classList.add("hidden");
+                    }
+
+                    if (inputFile) {
+                        inputFile.addEventListener("change", function() {
+                            const file = this.files[0];
+                            if (file) {
+                                const reader = new FileReader();
+                                reader.addEventListener("load", function() {
+                                    previewImage.setAttribute("src", this.result);
+                                    previewContainer.classList.remove("hidden");
+                                    uploadLabel.classList.add("hidden");
+                                });
+                                reader.readAsDataURL(file);
+                            }
+                        });
+                    }
+
+                    if (previewContainer) {
+                        previewContainer.addEventListener("click", function() {
+                            inputFile.click();
+                        });
+                    }
+                });
                 document.addEventListener("DOMContentLoaded", () => {
                     document.querySelectorAll('[data-modal-toggle]').forEach(button => {
                         button.addEventListener('click', () => {

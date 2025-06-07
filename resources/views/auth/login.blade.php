@@ -73,7 +73,7 @@
                                 {{ old('remember') ? 'checked' : '' }}>
                             <label for="link-checkbox" class="ms-2 text-sm text-text">Ingatkan saya</label>
                         </div>
-                        <a href="{{ route('verify') }}" class="text-logo hover:underline">Lupa Password?</a>
+                        <a href="{{ route('verify') }}" class="text-logo hover:underline">Lupa Kata Sandi?</a>
                     </div>
 
                     <button type="submit"

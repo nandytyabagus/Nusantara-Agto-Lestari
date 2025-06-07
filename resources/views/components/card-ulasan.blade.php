@@ -27,7 +27,7 @@
                             <button data-modal-target="modal-{{ $ulasan->id }}"
                                 data-modal-toggle="modal-{{ $ulasan->id }}"
                                 class="flex w-full gap-2 font-medium px-4 py-2 hover:bg-gray-100"><x-far-edit
-                                    class="w-5 h-5 text-blue-600" />Edit</button>
+                                    class="w-5 h-5 text-blue-600" />Ubah</button>
                         </li>
                     @endif
                     <li>
@@ -80,7 +80,7 @@
                         </div>
                         <button type="submit"
                             class="inline-flex items-center py-3 px-6 text-sm font-medium text-center text-white bg-[#508D4E] rounded-lg hover:bg-[#5ea55b] cursor-pointer">
-                            Edit Ulasan
+                            Ubah Ulasan
                         </button>
                     </form>
                 </div>
@@ -101,7 +101,8 @@
                     showCancelButton: true,
                     confirmButtonColor: '#d33',
                     cancelButtonColor: '#3085d6',
-                    confirmButtonText: 'Ya, hapus!'
+                    confirmButtonText: 'Iya',
+                    cancelButtonText: 'Tidak'
                 }).then((result) => {
                     if (result.isConfirmed) {
                         form.submit();

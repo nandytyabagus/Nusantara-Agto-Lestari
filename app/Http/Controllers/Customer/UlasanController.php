@@ -23,7 +23,7 @@ class UlasanController extends Controller
             'isi' => $request->comment,
         ]);
 
-        toast('Ulasan berhasil ditambahkan', 'success')->autoClose(5000)->position('top-end')->hideCloseButton();
+        toast('Ulasan telah berhasil ditambahkan', 'success')->autoClose(5000)->position('top-end')->hideCloseButton();
         return redirect()->back();
     }
 
@@ -37,7 +37,7 @@ class UlasanController extends Controller
             'isi' => $request->comment,
         ]);
 
-        toast('Ulasan berhasil diperbarui', 'success')->autoClose(5000)->position('top-end')->hideCloseButton();
+        toast('Perubahan berhasil disimpan', 'success')->autoClose(5000)->position('top-end')->hideCloseButton();
         return back();
     }
 
@@ -45,7 +45,7 @@ class UlasanController extends Controller
     {
         $ulasan->delete();
 
-        toast('Ulasan berhasil dihapus', 'success')->autoClose(5000)->position('top-end')->hideCloseButton();
+        toast('Ulasan telah berhasil dihapus', 'success')->autoClose(5000)->position('top-end')->hideCloseButton();
         return back();
     }
 }

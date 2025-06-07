@@ -77,11 +77,10 @@ class ArtikelControlller extends Controller
         $validate = $request->validate([
             'judul' => 'required|string',
             'isi' => 'required|string',
-            'gambar' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'gambar' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ],[
             'judul.required' => 'Judul belum terisi, wajib terisi!',
             'isi.required' => 'Isi artikel belum terisi, wajib terisi!',
-            'gambar.required' => 'Gambar produk wajib diunggah',
             'gambar.image' => 'File harus berupa gambar',
             'gambar.mimes' => 'Format gambar harus JPG, JPEG, PNG, atau WEBP',
             'gambar.max' => 'Ukuran gambar maksimal 2MB',
@@ -100,7 +99,8 @@ class ArtikelControlller extends Controller
         $artikel->update([
             'judul' => $validate['judul'],
             'isi' => $validate['isi'],
-            'gambar' => $imagePath,
+            'gambar' => $imagePath ?? $artikel->gambar,
+            'slug' => Str::slug($validate['judul']),
         ]);
 
         toast('Artikel berhasil diperbarui!', 'success')->autoClose(3000)->position('top-end');

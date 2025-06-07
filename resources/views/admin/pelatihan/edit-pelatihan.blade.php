@@ -31,6 +31,10 @@
                             <p class="text-xs text-gray-500 dark:text-gray-400">JPG, JPEG, PNG & WEBP (MAX 2 MB)</p>
                         </div>
                         <input id="dropzone-file" name="gambar" type="file" class="hidden" />
+                        @if ($pelatihan->gambar)
+                            <input id="dropzone-file" name="gambar" type="file" class="hidden"
+                                value="{{ $pelatihan->gambar }}">
+                        @endif
                     </label>
                 </div>
 
@@ -108,7 +112,7 @@
                             <label for="deskripsi"
                                 class="text-gray-300 {{ $errors->has('deskripsi') ? 'text-red-500' : 'text-gray-300' }}">Deskripsi</label>
                             <div id="quill-editor" class="h-48"></div>
-                            <textarea name="isi" id="quill-editor-area" cols="30" rows="10" class="hidden">{{ old('isi') }}</textarea>
+                            <textarea name="isi" id="quill-editor-area" cols="30" rows="10" class="hidden">{{ old('isi', $pelatihan->deskripsi) }}</textarea>
                             {{-- <textarea name="deskripsi" id="deskripsi" placeholder="Masukkan deskripsi pelatihan"
                                 class="w-full rounded-lg border-2 resize-none bg-transparent text-left align-top px-3 py-3 h-40 appearance-none focus:ring-0 focus:border-logo peer focus:outline-none {{ $errors->has('deskripsi') ? 'border-red-500 focus:border-red-500' : 'border-gray-300 focus:border-logo' }}">{{ old('deskripsi', $pelatihan->deskripsi) }}</textarea> --}}
                             @error('deskripsi')
@@ -137,12 +141,13 @@
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
                 Swal.fire({
-                    title: 'Yakin ingin Menambah Data?',
+                    title: 'Yakin ingin Mengubah Pelatihan?',
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#d33',
                     cancelButtonColor: '#3085d6',
-                    confirmButtonText: 'Ya'
+                    confirmButtonText: 'Ya',
+                    cancelButtonText: 'Tidak'
                 }).then((result) => {
                     if (result.isConfirmed) {
                         form.submit();

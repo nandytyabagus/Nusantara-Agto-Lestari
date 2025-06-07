@@ -29,6 +29,7 @@ Route::middleware(['Customer'])->group(function(){
     Route::post('/pelatihan/daftar{id}', [PelatihanController::class, 'daftarPelatihan'])->name('daftarPelatihanCustomer');
     Route::get('/pelatihan/riwayat/{id}', [PelatihanController::class, 'ShowViewRiwayatPelatihan'])->name('riwayatPelatihan');
     Route::post('/pelatihan/cek-user', [PelatihanController::class, 'cekUser'])->name('pelatihan.cekUser');
+    Route::put('/pelatihan/bukti-pembayaran/{id}', [PelatihanController::class, 'UploadBuktiPembayaran'])->name('uploadBuktiPembayaran');
 
     Route::post('/ulasan/create{id}', [UlasanController::class, 'tambahUlasan'])->name('tambahUlasan');
     Route::resource('ulasan', UlasanController::class)->only(['update', 'destroy',]);

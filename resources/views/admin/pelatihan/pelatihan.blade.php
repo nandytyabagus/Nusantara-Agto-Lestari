@@ -30,8 +30,7 @@
                         </th>
                         <th class="px-4 py-3">Judul Pelatihan</th>
                         <th class="px-4 py-3">Deskripsi</th>
-                        <th class="px-4 py-3">Waktu</th>
-                        <th class="px-4 py-3">Lokasi</th>
+                        <th class="px-4 py-3">Tangal pelaksanaan</th>
                         <th class="px-4 py-3">Kuota</th>
                         <th class="px-4 py-3 text-center">Aksi</th>
                     </tr>
@@ -46,10 +45,9 @@
                             <td class="px-4 py-3 text-justify whitespace-normal break-words max-w-md">
                                 {{ Str::limit($pelatihan->deskripsi, 100) }}
                             </td>
-                            <td class="px-4 py-3 w-[120px]">
+                            <td class="px-4 py-3">
                                 {{ \Carbon\Carbon::parse($pelatihan->waktu_pelaksanaan)->translatedFormat('d F Y') }}
                             </td>
-                            <td class="px-4 py-3">{{ $pelatihan->lokasi }}</td>
                             <td class="text-center px-3 py-3">{{ $pelatihan->kuota }}</td>
                             <td class="px-4 py-3">
                                 <div class="flex items-center gap-3">
@@ -96,7 +94,8 @@
                         showCancelButton: true,
                         confirmButtonColor: '#d33',
                         cancelButtonColor: '#3085d6',
-                        confirmButtonText: 'Ya, hapus!'
+                        confirmButtonText: 'Iya',
+                        cancelButtonText: 'Tidak'
                     }).then((result) => {
                         if (result.isConfirmed) {
                             form.submit();

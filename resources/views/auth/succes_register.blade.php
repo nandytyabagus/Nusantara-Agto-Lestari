@@ -14,7 +14,7 @@
         <div class="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-10 md:p-20 lg:p-[120px]">
             <div class="w-full max-w-md">
                 <x-eva-checkmark-circle-2 class="text-[#17A31A] w-[60px] h-[60px] mb-4" />
-                <h2 class="text-3xl font-bold text-text mb-2">Your Account Successfully Created</h2>
+                <h2 class="text-3xl font-bold text-text mb-2">Anda Berhasil Menambahkan Akun</h2>
                 <p class="text-sm text-text mb-8">Mari kita mulai perjalanan Anda.</p>
             </div>
         </div>
@@ -22,6 +22,6 @@
     <script>
         setTimeout(() => {
             window.location.href = "{{ route('Beranda') }}";
-        }, 2000);
+        }, 5000);
     </script>
 </x-layouts.guest>

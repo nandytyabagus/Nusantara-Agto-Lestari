@@ -46,7 +46,7 @@ class ProfileController extends Controller
 
         $user->save();
 
-        toast('Perbaikan Berhasil Disimpan', 'success')->autoClose(5000)->position('top-end')->hideCloseButton();
+        toast('Perubahan Berhasil Disimpan', 'success')->autoClose(5000)->position('top-end')->hideCloseButton();
         return redirect()->route('ShowProfile', ['id' => $id]);
     }
 

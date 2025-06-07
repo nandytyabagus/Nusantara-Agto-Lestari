@@ -14,7 +14,7 @@
         <div class="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-10 md:p-20 lg:p-[120px]">
             <div class="w-full max-w-md">
                 <x-eva-checkmark-circle-2 class="text-[#17A31A] w-[60px] h-[60px] mb-4" />
-                <h2 class="text-3xl font-bold text-text mb-2">Your Password Successfully Changed</h2>
+                <h2 class="text-3xl font-bold text-text mb-2">Kata Sandi Berhasil Diubah</h2>
                 <p class="text-sm text-text mb-8">Masuk ke akun Anda dengan kata sandi baru Anda</p>
                 <button type="submit" onclick="window.location.href='{{ route('login') }}'"
                     class="bg-logo hover:bg-white text-white hover:text-logo border-2 hover:border-logo font-bold rounded-xl py-4 px-4 w-full transition">

@@ -92,7 +92,7 @@ class ProdukControlller extends Controller
             'kategori' => 'required|exists:kategoris,id',
             'deskripsi' => 'required|string',
             'harga' => 'required|numeric|min:0',
-            'gambar' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'gambar' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ],[
             'nama.required' => 'Nama produk belum terisi',
             'kategori.required' => 'Kategori belum terisi, wajib di isi!',
@@ -100,7 +100,6 @@ class ProdukControlller extends Controller
             'deskripsi.required' => 'Deskripsi wajib terisi',
             'harga.required' => 'Harga belum terisi',
             'harga.numeric' => 'Inputan harga harus berupa angka',
-            'gambar.required' => 'Gambar produk wajib diunggah',
             'gambar.image' => 'File harus berupa gambar',
             'gambar.mimes' => 'Format gambar harus JPG, JPEG, PNG, atau WEBP',
             'gambar.max' => 'Ukuran gambar maksimal 2MB',
@@ -110,9 +109,8 @@ class ProdukControlller extends Controller
 
         if ($request->hasFile('gambar')) {
             if ($produk->gambar && Storage::disk('public')->exists($produk->gambar)) {
-                Storage::delete('public/' . $produk->gambar);
+                Storage::disk('public')->delete($produk->gambar);
             }
-
             $imagePath = $request->file('gambar')->store('produks', 'public');
         }
 
@@ -121,10 +119,10 @@ class ProdukControlller extends Controller
             'kategori_id' => $validate['kategori'],
             'harga' => $validate['harga'],
             'deskripsi' => $validate['deskripsi'],
-            'gambar' => $imagePath,
+            'gambar' => $imagePath ?? $produk->gambar,
         ]);
 
-        toast('Produk berhasil diperbarui!', 'success')->autoClose(3000)->position('top-end');
+        toast('Prubahan berhasil disimpan!', 'success')->autoClose(3000)->position('top-end');
 
         return redirect()->route('ProdukAdmin');
     }

@@ -43,8 +43,7 @@
                     aria-labelledby="dropdownInformdropdownAvatarNameButtonationButton">
                     <li>
                         <a href="{{ route('Profile', $user->id) }}"
-                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Kelola
-                            akun</a>
+                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profil</a>
                     </li>
                     <li>
                         <a href="{{ route('riwayatPelatihan', $user->id) }}"
@@ -56,8 +55,7 @@
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button
-                            class="text-left w-full block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign
-                            out</button>
+                            class="text-left w-full block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Logout</button>
                     </form>
                 </div>
             </div>

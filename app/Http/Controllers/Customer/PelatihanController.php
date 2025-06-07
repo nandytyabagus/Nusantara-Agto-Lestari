@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\DetailPelatihan;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PelatihanController extends Controller
@@ -106,4 +107,23 @@ class PelatihanController extends Controller
         return view('customer.pelatihan.riwayat-pelatihan', compact('pelatihans', 'id'));
     }
 
+    public function UploadBuktiPembayaran(Request $request, $id)
+    {
+        $request->validate([
+            'gambar' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+        ]);
+
+        $detail = DetailPelatihan::findOrFail($id);
+
+        if ($detail->bukti_pembayaran && Storage::exists('public/' . $detail->bukti_pembayaran)) {
+            Storage::delete('public/' . $detail->bukti_pembayaran);
+        }
+
+        $path = $request->file('gambar')->store('bukti_pembayaran', 'public');
+        $detail->bukti_pembayaran = $path;
+        $detail->save();
+
+        toast('Bukti pembayaran berhasil diunggah!', 'success')->autoClose(3000)->position('top-end')->hideCloseButton();
+        return redirect()->back();
+    }
 }

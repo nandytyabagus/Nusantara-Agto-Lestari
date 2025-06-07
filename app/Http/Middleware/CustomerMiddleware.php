@@ -21,7 +21,7 @@ class CustomerMiddleware
         }
         else{
             $role = Auth::user()->role;
-            if($role === 'customer')
+            if($role === 'pelanggan')
             {
                 return $next($request);
             }

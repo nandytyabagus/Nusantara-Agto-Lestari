@@ -96,7 +96,7 @@ class PelatihanControlller extends Controller
             'bataspendaftaran' => 'required|date',
             'lokasi' => 'required|string',
             'kuota' => 'required|integer',
-            'gambar' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'gambar' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ],[
             'judul.required' => 'Judul pelatihan belum terisi',
             'deskripsi.required' => 'Deskripsi belum terisi',
@@ -106,7 +106,6 @@ class PelatihanControlller extends Controller
             'bataspendaftaran.date' => 'Format batas pendaftaran tidak valid',
             'lokasi.required' => 'Lokasi belum terisi',
             'kuota.required' => 'Kuota belum terisi',
-            'gambar.required' => 'Gambar belum terisi',
             'gambar.image' => 'File harus berupa gambar',
             'gambar.mimes' => 'Format gambar tidak valid, hanya jpg, jpeg, png, webp yang diperbolehkan',
             'gambar.max' => 'Ukuran gambar terlalu besar, maksimal 2MB',

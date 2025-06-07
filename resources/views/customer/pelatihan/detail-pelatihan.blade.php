@@ -159,7 +159,7 @@
                                                         @csrf
                                                         <button id="konfirmasiModal" type="submit"
                                                             class="text-white bg-[#508D4E] rounded-lg px-5 py-3 cursor-pointer">
-                                                            Daftar Sekarang
+                                                            Daftar
                                                         </button>
                                                     </form>
                                                 </div>
