@@ -56,7 +56,7 @@
                         </div>
                         <div class="relative">
                             <input type="datetime-local" name="waktupelaksanaan" id="waktupelaksanaan"
-                                value="{{ old('kuota', $pelatihan->waktu_pelaksanaan) }}"
+                                value="{{ old('waktupelaksanaan', $pelatihan->waktu_pelaksanaan) }}"
                                 class="w-full block bg-transparent border-2 rounded-xl px-3 py-3 border-gray-300 appearance-none focus:ring-0 focus:border-logo peer focus:outline-none {{ $errors->has('waktupelaksanaan') ? 'border-red-500 focus:border-red-500' : 'border-gray-300 focus:border-logo' }}"
                                 placeholder="" />
                             <label for="waktupelaksanaan"
@@ -112,7 +112,7 @@
                             <label for="deskripsi"
                                 class="text-gray-300 {{ $errors->has('deskripsi') ? 'text-red-500' : 'text-gray-300' }}">Deskripsi</label>
                             <div id="quill-editor" class="h-48"></div>
-                            <textarea name="isi" id="quill-editor-area" cols="30" rows="10" class="hidden">{{ old('isi', $pelatihan->deskripsi) }}</textarea>
+                            <textarea name="deskripsi" id="quill-editor-area" cols="30" rows="10" class="hidden">{{ old('isi', $pelatihan->deskripsi) }}</textarea>
                             {{-- <textarea name="deskripsi" id="deskripsi" placeholder="Masukkan deskripsi pelatihan"
                                 class="w-full rounded-lg border-2 resize-none bg-transparent text-left align-top px-3 py-3 h-40 appearance-none focus:ring-0 focus:border-logo peer focus:outline-none {{ $errors->has('deskripsi') ? 'border-red-500 focus:border-red-500' : 'border-gray-300 focus:border-logo' }}">{{ old('deskripsi', $pelatihan->deskripsi) }}</textarea> --}}
                             @error('deskripsi')
@@ -160,11 +160,6 @@
             const previewImage = document.getElementById("preview");
             const uploadLabel = document.getElementById("upload-label");
 
-            if (previewImage.src && !previewImage.src.endsWith('#')) {
-                previewContainer.classList.remove("hidden");
-                uploadLabel.classList.add("hidden");
-            }
-
             inputFile.addEventListener("change", function() {
                 const file = this.files[0];
                 if (file) {
@@ -173,6 +168,7 @@
                     reader.addEventListener("load", function() {
                         previewImage.setAttribute("src", this.result);
                         previewContainer.classList.remove("hidden");
+                        uploadLabel.classList.add("hidden");
                     });
 
                     reader.readAsDataURL(file);

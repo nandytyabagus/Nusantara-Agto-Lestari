@@ -102,7 +102,7 @@
                             <label for="deskripsi"
                                 class="text-gray-300 {{ $errors->has('deskripsi') ? 'text-red-500' : 'text-gray-300 ' }}">Deskripsi</label>
                             <div id="quill-editor" class="h-48"></div>
-                            <textarea name="isi" id="quill-editor-area" cols="30" rows="10" class="hidden">{{ old('isi') }}</textarea>
+                            <textarea name="deskripsi" id="quill-editor-area" cols="30" rows="10" class="hidden">{{ old('isi') }}</textarea>
                             {{-- <textarea type="text" name="deskripsi" id="deskripsi"
                                 class="w-full rounded-lg border-2 resize-none bg-transparent text-left align-top px-3 py-3 h-34 appearance-none focus:ring-0 focus:border-logo peer focus:outline-none {{ $errors->has('deskripsi') ? 'border-red-500 focus:border-red-500' : 'border-gray-300 focus:border-logo' }}">{{ old('deskripsi') }}</textarea> --}}
                             @error('deskripsi')

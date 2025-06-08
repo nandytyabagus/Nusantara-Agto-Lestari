@@ -48,7 +48,7 @@
                             <p class="text-sm font-light text-text">{{ $user->role }}</p>
                         </div>
                     </div>
-                    <a href="{{ route('Profile', $user->id) }}"
+                    <a href="{{ route('ShowProfile', $user->id) }}"
                         class="bg-logo flex text-white pl-7 pr-9 py-3 rounded-lg ml-auto">
                         <x-tabler-caret-left-f class="w-6 h-6" /> Kembali
                     </a>
@@ -57,7 +57,7 @@
 
             {{-- Form --}}
             <div class="bg-white rounded-xl p-8 space-y-6">
-                <form action="{{ route('editProfileCustomer', $user->id) }}" method="POST">
+                <form action="{{ route('editProfile', $user->id) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class=" space-y-6 w-[88%]">

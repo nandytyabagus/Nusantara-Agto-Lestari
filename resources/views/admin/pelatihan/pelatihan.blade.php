@@ -43,7 +43,7 @@
                             </td>
                             <td class="px-4 py-3">{{ $pelatihan->judul_pelatihan }}</td>
                             <td class="px-4 py-3 text-justify whitespace-normal break-words max-w-md">
-                                {{ Str::limit($pelatihan->deskripsi, 100) }}
+                                {!! Str::limit($pelatihan->deskripsi, 100) !!}
                             </td>
                             <td class="px-4 py-3">
                                 {{ \Carbon\Carbon::parse($pelatihan->waktu_pelaksanaan)->translatedFormat('d F Y') }}

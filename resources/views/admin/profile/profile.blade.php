@@ -17,7 +17,7 @@
                             <p class="text-sm font-light text-text">{{ $user->role }}</p>
                         </div>
                     </div>
-                    <a href="{{ route('EditProfileCustomer', $user->id) }}"
+                    <a href="{{ route('ShowEditProfile', $user->id) }}"
                         class="bg-logo text-white px-5 py-3 rounded-lg ml-auto">
                         Ubah Profil
                     </a>
