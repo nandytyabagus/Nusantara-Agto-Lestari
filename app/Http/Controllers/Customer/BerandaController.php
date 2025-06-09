@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Customer;
 
-use App\Http\Controllers\Controller;
 use App\Models\Ulasan;
+use App\Models\Pelatihan;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class BerandaController extends Controller
 {
     public function ShowView()
     {
-        $ulasans = Ulasan::with('user')->get()->all();
-
-        return view('customer.beranda.beranda', compact('ulasans'));
+        $pelatihans = Pelatihan::orderBy('created_at', 'desc')->take(3)->get();
+        $ulasans = Ulasan::orderBy('created_at', 'desc')->take(4)->get();
+        return view('customer.beranda.beranda', compact('pelatihans', 'ulasans'));
     }
 }

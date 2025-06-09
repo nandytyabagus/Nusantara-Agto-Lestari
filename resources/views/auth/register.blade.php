@@ -1,16 +1,23 @@
 <x-layouts.guest>
     <div class="flex flex-col lg:flex-row h-screen w-screen">
         {{-- Left image --}}
-        <div class="hidden lg:block lg:w-1/2 relative overflow-hidden">
-            <img src="{{ asset('images/bg_register.jpg') }}" alt="" loading="lazy"
-                class="absolute w-full h-full object-cover z-0">
+        <div class="hidden lg:block lg:w-1/2 relative overflow-hidden p-5 px-15">
+            <img src="{{ asset('images/login.webp') }}" alt="" loading="lazy"
+                class="absolute w-12/14 h-[94.5vh] object-cover z-0 rounded-[90px]">
+            <div class="absolute">
+            </div>
+            <div class="absolute bottom-16 right-30 text-white flex items-center gap-2 text-right">
+                <h1 class="text-white text-5xl font-bold leading-tight drop-shadow-md">
+                    Nusantara<br>Agro Lestari
+                </h1>
+            </div>
         </div>
 
         {{-- Register Form --}}
         <div class="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-10 md:p-20 lg:p-[120px]">
             <div class="w-full max-w-md">
-                <h1 class="text-4xl font-bold mb-2 text-black">Daftar Akun</h1>
-                <p class="text-sm text-gray-500 mb-10">Daftar untuk menikmati fitur</p>
+                <h1 class="text-4xl font-bold text-black">Daftar Akun</h1>
+                <p class="text-sm text-gray-500 mb-5">Daftar untuk menikmati fitur</p>
 
                 <form action="/register" method="POST" class="space-y-3">
                     @csrf
@@ -84,7 +91,8 @@
 
                     {{-- Syarat & Ketentuan --}}
                     <div class="flex items-center space-x-2 text-sm">
-                        <input type="checkbox" id="terms" name="terms" class="accent-logo scale-125"
+                        <input type="checkbox" id="terms" name="terms"
+                            class="w-4 h-4 text-logo bg-gray-100 border-logo rounded-sm focus:ring-logo focus:ring-2"
                             {{ old('terms') ? 'checked' : '' }}>
                         <label for="terms">
                             Saya menyetujui <a href="#" class="text-logo hover:underline">Syarat & Ketentuan</a>

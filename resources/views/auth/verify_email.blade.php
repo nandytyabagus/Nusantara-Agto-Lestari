@@ -1,10 +1,12 @@
 <x-layouts.guest>
     <div class="flex flex-col lg:flex-row h-screen w-screen">
         {{-- Left Image --}}
-        <div class="hidden lg:block lg:w-1/2 relative overflow-hidden ">
-            <img src="{{ asset('images/login.webp') }}" alt="" loading="lazy"
-                class="absolute w-full h-full object-cover z-0">
-            <div class="absolute top-10 left-10 z-10">
+        <div class="hidden lg:block lg:w-1/2 relative overflow-hidden p-5 px-15">
+            <img src="{{ asset('images/Home.webp') }}" alt="" loading="lazy"
+                class="absolute w-12/14 h-[94.5vh] object-cover z-0 rounded-[90px]">
+            <div class="absolute">
+            </div>
+            <div class="absolute bottom-16 right-30 text-white flex items-center gap-2 text-right">
                 <h1 class="text-white text-5xl font-bold leading-tight drop-shadow-md">
                     Nusantara<br>Agro Lestari
                 </h1>
@@ -12,7 +14,10 @@
         </div>
 
         {{-- Login Form --}}
-        <div class="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-10 md:p-20 lg:p-[120px]">
+        <div class="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-10 md:p-20 lg:p-[120px] relative">
+            <div class="absolute top-8 left-39 z-10">
+                <a href="{{ route('login') }}"><x-heroicon-o-arrow-left class="text-logo w-8 h-8" /></a>
+            </div>
             <div class="w-full max-w-md">
                 <div class="w-[60px] h-[60px] bg-bg_icons rounded-full flex items-center justify-center mb-[18px]">
                     <x-bx-lock class="text-logo w-[32px] h-[32px]" />
