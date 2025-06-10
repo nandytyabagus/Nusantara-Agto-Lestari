@@ -67,7 +67,7 @@ Route::middleware(['admin'])->group(function(){
     Route::post('/Pelatihan/tambah-pelatihan',[AdminPelatihanController::class, 'tambahPelatihan'])->name('tambahPelatihan');
     Route::get('/Pelatihan/edit-pelatihan{id}',[AdminPelatihanController::class, 'ShowViewEditPelatihan'])->name('viewEditPelatihan');
     Route::put('/Pelatihan/edit-pelatihan{id}',[AdminPelatihanController::class, 'editPelatihan'])->name('editPelatihan');
-    Route::delete('/Pelatihan/delete/{id}',[AdminPelatihanController::class, 'hapusPelatihan'])->name('hapusPelatihan');
+    Route::put('/Pelatihan/{id}',[AdminPelatihanController::class, 'hapusPelatihan'])->name('hapusPelatihan');
     Route::get('/Pelatihan/daftarPelatihan/{id}',[AdminPelatihanController::class, 'ShowViewPendaftaran'])->name('viewPendaftaran');
     Route::put('/Pelatihan/daftarPelatihan/{id}',[AdminPelatihanController::class, 'editStatus'])->name('editStatus');
 

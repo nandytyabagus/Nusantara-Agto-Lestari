@@ -66,7 +66,7 @@
                                     <form action="{{ route('hapusPelatihan', $pelatihan->id) }}" method="POST"
                                         class="form-hapus">
                                         @csrf
-                                        @method('DELETE')
+                                        @method('PUT')
                                         <button type="submit" class="flex items-center">
                                             <span class="text-red-700 cursor-pointer">
                                                 <x-heroicon-o-trash class="w-5 h-5" />

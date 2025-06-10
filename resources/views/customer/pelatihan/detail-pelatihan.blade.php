@@ -55,6 +55,12 @@
                                 @if ($exists)
                                     <button class="w-full bg-white text-[#508D4E] font-semibold text-xl py-3 rounded-xl"
                                         disabled>Sudah Terdaftar</button>
+                                @elseif ($sisaKuota <= 0)
+                                    <button class="w-full bg-white text-[#508D4E] font-semibold text-xl py-3 rounded-xl"
+                                        disabled>Kuota Penuh</button>
+                                @elseif ($pelatihans->batas_pendaftaran < now())
+                                    <button class="w-full bg-white text-[#508D4E] font-semibold text-xl py-3 rounded-xl"
+                                        disabled>Pendaftaran Ditutup</button>
                                 @else
                                     <button id="btnDaftar" type="button"
                                         class="w-full bg-white text-[#508D4E] font-semibold text-xl py-3 rounded-xl cursor-pointer">

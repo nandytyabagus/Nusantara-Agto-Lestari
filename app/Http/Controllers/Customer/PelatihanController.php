@@ -17,7 +17,7 @@ class PelatihanController extends Controller
 {
     public function ShowView()
     {
-        $pelatihans = Pelatihan::orderBy('created_at', 'desc')->get();
+        $pelatihans = Pelatihan::where('status', 'aktif')->orderBy('created_at', 'desc')->get();
 
         $semuaulasans = Ulasan::with('user')->where('tipe_ulasan_id', 2)->orderBy('created_at', 'desc')->get();
 

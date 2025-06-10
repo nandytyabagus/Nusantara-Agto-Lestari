@@ -25,7 +25,6 @@ class DatabaseSeeder extends Seeder
             TipeUlasanSeeder::class,
             UlasanSeeder::class,
             PelatihanSeeder::class,
-            DetailPelatihanSeeder::class
         ]);
     }
 }

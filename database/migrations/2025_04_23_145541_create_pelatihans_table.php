@@ -19,6 +19,7 @@ return new class extends Migration
             $table->dateTime('batas_pendaftaran');
             $table->string('lokasi');
             $table->integer('kuota');
+            $table->enum('status', ['aktif', 'nonaktif'])->default('aktif');
             $table->string('gambar')->nullable();
             $table->timestamps();
         });

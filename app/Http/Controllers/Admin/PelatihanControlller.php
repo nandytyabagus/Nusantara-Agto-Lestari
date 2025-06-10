@@ -12,7 +12,8 @@ class PelatihanControlller extends Controller
 {
     public function ShowViewAdmin(Request $request)
     {
-        $pelatihans = Pelatihan::when($request->search, function ($query, $search) {
+        $pelatihans = Pelatihan::where('status', 'aktif')
+        ->when($request->search, function ($query, $search) {
             $query->where('judul_pelatihan', 'like', '%' . $search . '%')
                   ->orWhere('lokasi', 'like', '%' . $search . '%');
         })
@@ -169,14 +170,10 @@ class PelatihanControlller extends Controller
     {
         $pelatihan = Pelatihan::findOrFail($id);
 
-        if ($pelatihan->gambar && Storage::disk('public')->exists($pelatihan->gambar)) {
-            Storage::disk('public')->delete($pelatihan->gambar);
-        }
-
-        $pelatihan->delete();
+        $pelatihan->status = 'nonaktif';
+        $pelatihan->save();
 
         toast('Pelatihan berhasil dihapus', 'success')->autoClose(5000)->position('top-end')->hideCloseButton();
         return redirect()->back();
     }
-
 }
