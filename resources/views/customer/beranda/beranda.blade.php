@@ -2,7 +2,7 @@
     <section>
         <div class="relative w-full h-[90vh] bg-cover bg-center bg-no-repeat"
             style="background-image: url('{{ asset('images/Home.webp') }}');" loading="lazy">
-            <div class="absolute inset-0 bg-black/20 bg-opacity-50"></div>
+            <div class="absolute inset-0 bg-black/60 bg-opacity-50"></div>
             <div class="relative z-10 flex items-center h-full w-full px-20 py-10 gap-3">
                 <div class="text-white text-shadow-lg space-y-5">
                     <div class=" space-y-2">
@@ -190,7 +190,7 @@
         <div class="relative w-full h-full bg-cover bg-bottom bg-no-repeat"
             style="background-image: url('{{ asset('images/roger-starnes-sr-AClXw4rTUU0-unsplash.webp') }}');"
             loading="lazy">
-            <div class="absolute inset-0 bg-black/50 bg-opacity-50"></div>
+            <div class="absolute inset-0 bg-black/70 bg-opacity-50"></div>
             <div class="relative z-10 h-full w-full py-10 gap-3">
                 <div class="text-white text-shadow-lg space-y-5">
                     <div class=" space-y-2 px-20">
@@ -246,6 +246,41 @@
                         </a>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="mt-20 px-20 space-y-8 relative z-10">
+            <h2 class="text-4xl font-bold text-[#18a243] text-shadow-md text-center">Artikel Agro Bisnis</h2>
+            <div class=" text-white bg-[#2b2b2b] p-10 space-y-4 text-center rounded-xl">
+                <p class="text-lg">Kami juga menyediakan media untuk laman artikel untuk media informasi kegiatan
+                    dari
+                    <span class="text-[#18a243] font-bold">Nusantara Agro <span
+                            class="text-[#f08718] font-bold">Lestari.</span></span>
+                    <br>Tidak hanya itu kami juga menyediakan media informasi tetang ilmu dan
+                    edukasi tentang <span class="text-[#18a243] font-bold">Agro Bisnis</span>
+                </p>
+            </div>
+        </div>
+        <div class="relative  w-full h-full pt-25 p-10 -top-15 bg-cover bg-center bg-no-repeat"
+            style="background-image: url('{{ asset('images/fedor-shlyapnikov-LgseLOnBIPA-unsplash.webp') }}');"
+            loading="lazy">
+            @if (isset($artikels))
+                <div class="grid grid-cols-3 gap-6">
+                    @foreach ($artikels as $artikel)
+                        <div class="bg-white rounded-lg p-5">
+                            <img src="{{ asset('storage/' . $artikel->gambar) }}" alt="gambar"
+                                class="w-full h-55 object-cover rounded-lg mb-4 bg-center">
+                            <h3 class="text-lg font-semibold mb-2">{{ $artikel->judul }}</h3>
+                            <p class="text-sm text-gray-600">{{ Str::limit(strip_tags($artikel->isi), 200) }}</p>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+            <div class="flex justify-center items-center mt-10">
+                <a href="{{ route('Artikel') }}"
+                    class=" inline-block px-8 py-3 font-semibold bg-[#f08718] text-white rounded-lg hover:bg-[#f0a818] transition duration-300">Cari
+                    Lebih Banyak</a>
             </div>
         </div>
     </section>

@@ -19,7 +19,7 @@
                                 class="z-50 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-40">
                                 <ul class="py-4 text-sm text-gray-700" aria-labelledby="dropdownButton">
                                     <li>
-                                        <form action="{{ route('updateAvatarCustomer', $user->id) }}" method="POST"
+                                        <form action="{{ route('updateAvatar', $user->id) }}" method="POST"
                                             enctype="multipart/form-data">
                                             @csrf
                                             @method('PUT')
@@ -32,7 +32,7 @@
                                         </form>
                                     </li>
                                     <li>
-                                        <form action="{{ route('deleteAvatarCustomer', $user->id) }}" method="POST">
+                                        <form action="{{ route('deleteAvatar', $user->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit"
