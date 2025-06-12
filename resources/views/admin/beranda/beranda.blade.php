@@ -67,32 +67,34 @@
 
             <div class="bg-white rounded-xl shadow col-span-1 md:col-span-2 lg:col-span-2">
                 <div class="p-4">
-                    <h2 class="text-lg font-semibold mb-4">Statistik Artikel</h2>
-                    <canvas id="userChart" width="400" height="200"></canvas>
+                    {!! $chartArtikel->container() !!}
                 </div>
             </div>
             <div class="bg-white rounded-xl shadow col-span-1 md:col-span-2 lg:col-span-2">
                 <div class="p-4">
-                    <h2 class="text-lg font-semibold mb-4">Statistik Ulasan</h2>
-                    <canvas id="userChart" width="400" height="200"></canvas>
+                    {!! $chartUlasan->container() !!}
                 </div>
             </div>
 
             <div class=" bg-white rounded-xl shadow col-span-1 md:col-span-2 lg:col-span-3">
-                <div class="p-4">
-                    <h2 class="text-lg font-semibold mb-4">Statistik Pendaftar</h2>
-                    <canvas id="userChart" width="400" height="200"></canvas>
+                <div class="p-4 ">
+                    {!! $chartLinePendaftar->container() !!}
                 </div>
             </div>
             <div class="bg-white rounded-xl shadow">
-                <div class="p-4">
-                    <h2 class="text-lg font-semibold mb-4">Margin Ulasan</h2>
+                <div class="p-4 space-y-2">
+                    <div>
+                        {!! $chartDonatUlasan->container() !!}
+                    </div>
+                    <div>
+                        {!! $chartDonatTotal->container() !!}
+                    </div>
                 </div>
             </div>
 
             <div class="bg-white rounded-xl shadow">
                 <div class="p-4">
-                    <h2 class="text-lg font-semibold mb-4">Total Produk Setiap Kategori</h2>
+                    {!! $chartProdukKategori->container() !!}
                 </div>
             </div>
             <div class="bg-white rounded-xl shadow col-span-1 md:col-span-2 lg:col-span-3 flex">
@@ -117,7 +119,13 @@
                 </div>
             </div>
         </div>
-
     </div>
-    </div>
+    @push('scripts')
+        {!! $chartArtikel->script() !!}
+        {!! $chartUlasan->script() !!}
+        {!! $chartDonatUlasan->script() !!}
+        {!! $chartProdukKategori->script() !!}
+        {!! $chartLinePendaftar->script() !!}
+        {!! $chartDonatTotal->script() !!}
+    @endpush
 </x-layouts.admin>

@@ -16,7 +16,7 @@
     <title>{{ config('app.name') }}</title>
 </head>
 
-<body>
+<body class="font-dmsans">
     @php
         $user = Auth::user();
         $attribute = \App\Models\User::find(1);

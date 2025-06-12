@@ -13,8 +13,8 @@ class BerandaController extends Controller
     public function ShowView()
     {
         $pelatihans = Pelatihan::orderBy('created_at', 'desc')->take(3)->get();
-        $artikels = Artikel::orderBy('created_at', 'desc')->take(3)->get();
-        $ulasans = Ulasan::orderBy('created_at', 'desc')->take(4)->get();
+        $artikels = Artikel::with('user')->orderBy('created_at', 'desc')->take(3)->get();
+        $ulasans = Ulasan::with('user')->orderBy('created_at', 'desc')->take(4)->get();
         return view('customer.beranda.beranda', compact('pelatihans', 'ulasans', 'artikels'));
     }
 }
