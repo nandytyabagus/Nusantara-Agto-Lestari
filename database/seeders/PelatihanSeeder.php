@@ -16,7 +16,7 @@ class PelatihanSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 5; $i++) {
 
             $waktuPelaksanaan = $faker->dateTimeBetween('+3 days', '+3 months');
             $batasPendaftaran = (clone $waktuPelaksanaan)->modify('-3 days');

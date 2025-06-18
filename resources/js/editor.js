@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const quillEditorArea = document.getElementById("quill-editor-area");
 
     if (quillEditor && quillEditorArea) {
-        quillEditor.style.height = "8.5rem";
+        quillEditor.style.height = "25rem";
 
         const editor = new Quill("#quill-editor", {
             theme: "snow",

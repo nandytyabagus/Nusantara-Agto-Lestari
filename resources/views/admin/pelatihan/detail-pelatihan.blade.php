@@ -15,15 +15,15 @@
                 <div>
                     <h1 class=" font-bold text-4xl">{{ $pelatihans->judul_pelatihan }}</h1>
                 </div>
-                <div class="grid grid-cols-3 gap-9">
-                    <div class="col-span-2 space-y-2">
+                <div class="flex space-x-9">
+                    <div class=" w-full space-y-2">
                         <h1 class=" text-lg">Deskripsi</h1>
                         <div
                             class="prose max-w-full prose-h1:text-3xl prose-h1:font-bold prose-h2:text-2xl prose-p:leading-relaxed prose-img:rounded-lg">
                             {!! $pelatihans->deskripsi !!}
                         </div>
                     </div>
-                    <div class=" rounded-[20px] bg-[#508D4E]">
+                    <div class=" w-1/2 rounded-[20px] bg-[#508D4E] h-full">
                         <div class=" p-5 border-b-1 border-white">
                             <h3 class="text-xl font-bold text-white">Informasi Pelatihan</h3>
                         </div>

@@ -5,9 +5,15 @@
             <div class="border-b-2 border-[#508D4E] pb-5">
                 <h2 class="text-2xl">Artikel</h2>
             </div>
-            @foreach ($artikels as $artikel)
-                <x-card-artikel :artikel="$artikel"></x-card-artikel>
-            @endforeach
+            @if ($artikels && count($artikels) > 0)
+                @foreach ($artikels as $artikel)
+                    <x-card-artikel :artikel="$artikel"></x-card-artikel>
+                @endforeach
+            @else
+                <div class="text-center h-screen flex justify-center items-center">
+                    <h2 class="text-3xl font-bold text-logo">Artikel Kosong.</h2>
+                </div>
+            @endif
         </div>
 
         <!-- Artikel Lainnya Section -->
@@ -15,10 +21,16 @@
             <div class="sticky top-0 border-b-2 border-[#508D4E] pb-5 z-10 bg-white">
                 <h2 class="text-2xl">Artikel Lainnya</h2>
             </div>
-            @foreach ($terbaru as $artikel)
-                <x-card-artikel-side :artikel="$artikel"></x-card-artikel-side>
-                <div class="border-[#B0B0B0] border-b"></div>
-            @endforeach
+            @if ($terbaru && count($terbaru) > 0)
+                @foreach ($terbaru as $artikel)
+                    <x-card-artikel-side :artikel="$artikel"></x-card-artikel-side>
+                    <div class="border-[#B0B0B0] border-b"></div>
+                @endforeach
+            @else
+                <div class="text-center h-[90vh] flex justify-center items-center">
+                    <h2 class="text-xl font-semibold text-logo">Artikel Kosong.</h2>
+                </div>
+            @endif
         </div>
     </div>
 </x-layouts.customer>

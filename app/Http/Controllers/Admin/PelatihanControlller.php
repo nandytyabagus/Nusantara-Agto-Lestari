@@ -65,6 +65,10 @@ class PelatihanControlller extends Controller
             'gambar.max' => 'Ukuran gambar terlalu besar, maksimal 2MB',
         ]);
 
+        if (strtotime($request->bataspendaftaran) > strtotime($request->waktupelaksanaan)) {
+            return back()->withInput()->withErrors(['bataspendaftaran' => 'Batas pendaftaran tidak boleh melewati tanggal pelaksanaan.']);
+        }
+
         $gambarPath = $request->file('gambar')->store('pelatihan', 'public');
 
         Pelatihan::create([
@@ -111,6 +115,10 @@ class PelatihanControlller extends Controller
             'gambar.mimes' => 'Format gambar tidak valid, hanya jpg, jpeg, png, webp yang diperbolehkan',
             'gambar.max' => 'Ukuran gambar terlalu besar, maksimal 2MB',
         ]);
+
+        if (strtotime($request->bataspendaftaran) > strtotime($request->waktupelaksanaan)) {
+            return back()->withInput()->withErrors(['bataspendaftaran' => 'Batas pendaftaran tidak boleh melewati tanggal pelaksanaan.']);
+        }
 
         $pelatihan = Pelatihan::findOrFail($id);
         
