@@ -2,7 +2,7 @@
     <div class="w-full lg:flex h-screen justify-center items-center">
         <div class="lg:w-1/2 bg-[#E3F4E0] h-[70%] md:h-screen flex justify-center items-center">
             <a href="{{ route('ProdukAdmin') }}"
-                class="flex items-center gap-2 absolute top-4 left-5 md:top-7 md:left-6 lg:top-8 lg:left-7 text-text">
+                class="flex items-center gap-2 py-2 px-5 bg-white rounded-full absolute top-4 left-5 md:top-7 md:left-6 lg:top-8 lg:left-7 text-text">
                 <x-heroicon-o-arrow-long-left class="w-5 h-5" />Kembali ke halaman produk
             </a>
             <img src="{{ asset('storage/' . $produk->gambar) }}" alt="gambar" loading="lazy"

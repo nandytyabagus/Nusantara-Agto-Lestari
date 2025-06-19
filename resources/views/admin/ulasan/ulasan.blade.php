@@ -19,9 +19,8 @@
                         <th class="px-4 py-3">
                             <input type="checkbox" />
                         </th>
-                        <th class="px-4 py-3">Kategori</th>
                         <th class="px-4 py-3">Nama Customer</th>
-                        <th class="px-4 py-3">Ulasan</th>
+                        <th class="px-4 py-3 w-98">Ulasan</th>
                         <th class="px-4 py-3">Tanggal Unggahan</th>
                         <th class="px-4 py-3 text-center">Aksi</th>
                     </tr>
@@ -32,9 +31,8 @@
                             <td class="px-4 py-3">
                                 <input type="checkbox" />
                             </td>
-                            <td class="px-4 py-3">Kategori</td>
                             <td class="px-4 py-3">{{ $ulasan->user->name }}</td>
-                            <td class="px-4 py-3 text-justify whitespace-normal break-words max-w-md">
+                            <td class="px-4 py-3 text-justify whitespace-normal break-words w-98">
                                 {{ Str::limit($ulasan->isi, 100) }}</td>
                             <td class="px-4 py-3">
                                 {{ $ulasan->created_at->format('d M Y, H:i') }}

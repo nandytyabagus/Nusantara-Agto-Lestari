@@ -1,6 +1,7 @@
 <x-layouts.Applayout>
     <div>
-        <a href="{{ route('ArtikelAdmin') }}" class="flex items-center text-white gap-2 absolute top-8 left-8">
+        <a href="{{ route('ArtikelAdmin') }}"
+            class="flex items-center bg-logo py-2 px-5 rounded-full text-white gap-2 absolute top-8 left-8">
             <x-heroicon-o-arrow-long-left class="w-5 h-5" />Kembali ke halaman artikel
         </a>
         <img src="{{ asset('storage/' . $artikel->gambar) }}" alt=""

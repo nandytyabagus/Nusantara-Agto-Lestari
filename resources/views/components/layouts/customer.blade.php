@@ -11,6 +11,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
         rel="stylesheet">
+    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon" sizes="32x32">
+    <link rel="apple-touch-icon" href="{{ asset('favicon.ico') }}" type="image/x-icon" sizes="32x32">
     @vite('resources/css/app.css')
     @stack('styles')
     <title>{{ config('app.name') }}</title>

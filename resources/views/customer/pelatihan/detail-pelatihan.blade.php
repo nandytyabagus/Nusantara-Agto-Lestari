@@ -1,7 +1,8 @@
 <x-layouts.customer>
     <div>
         <div class=" absolute z-50 top-24 left-8">
-            <a href="{{ route('Pelatihan') }}" class="text-white gap-2 flex items-center"><x-heroicon-o-arrow-long-left
+            <a href="{{ route('Pelatihan') }}"
+                class="text-white gap-2 flex items-center px-5 py-2 rounded-full bg-[#508D4E]"><x-heroicon-o-arrow-long-left
                     class="w-5 h-5" />Kembali</a>
         </div>
         <!-- Gambar Utama Full Width -->
